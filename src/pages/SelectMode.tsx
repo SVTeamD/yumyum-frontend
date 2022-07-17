@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LinkButton from '../components/LinkButton';
-import HamburgerBar from '../images/HamburgerBar';
-import Logo from '../images/Logo';
-import AdminImage from '../images/AdminImage';
+import HamburgerBar from '../assets/HamburgerBar';
+import Logo from '../assets/Logo';
+import AdminImage from '../assets/AdminImage';
 
 export default function SelectMode() {
   return (
