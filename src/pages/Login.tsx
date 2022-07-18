@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Grid, Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-import TitleLogo from '../assets/TitleLogo';
+import Logo from '../assets/Logo';
+import logo from '../assets/images/logo.png';
 
 export default function Login() {
   const REST_API_KEY = '32477a8641e9c8898852ad84876cb9ba';
@@ -10,31 +11,51 @@ export default function Login() {
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   return (
-    <Grid
-      container
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      style={{ minHeight: '100vh' }}
-    >
+    <Grid container direction="column">
       <Box
         sx={{
-          padding: '11rem',
-          border: 'solid 4px'
+          flexFlow: 'column',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: 'auto',
+          padding: '2rem',
+          boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)'
         }}
       >
-        <TitleLogo />
+        <Box
+          component="img"
+          sx={{
+            alignItems: 'center',
+            width: '8rem',
+            height: '5rem'
+          }}
+          alt="The house from the offer."
+          src={logo}
+        />
         <Typography
           align="center"
           sx={{
             marginTop: '2rem',
-            marginBottom: '15rem',
-            fontFamily: 'Gungseo',
-            fontSize: '3rem'
+            marginBottom: '1rem',
+            fontSize: '2rem',
+            fontFamily: 'Gungseo'
           }}
         >
-          어서와유!
+          어서오셔유!
+        </Typography>
+        <Typography
+          align="center"
+          sx={{
+            marginTop: '2rem',
+            marginBottom: '1rem',
+            color: '#2E2F2F',
+            fontSize: '1rem'
+          }}
+        >
+          간편하게 로그인하고
+          <br />
+          다양한 서비스를 이용하세요.
         </Typography>
         <div
           style={{
@@ -44,10 +65,17 @@ export default function Login() {
           }}
         >
           <a href={KAKAO_AUTH_URL} id="custom-login-btn">
-            <img
-              src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-              width="218"
-            />
+            <div
+              style={{
+                borderRadius: '50px',
+                backgroundImage: `url(${require('../assets/images/kakao_login_medium_wide.png')})`,
+                backgroundSize: 'cover',
+                margin: '10px auto',
+                color: 'transparent',
+                width: '20rem',
+                height: '3rem'
+              }}
+            ></div>
           </a>
         </div>
       </Box>
