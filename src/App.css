@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.Rectangle-23 {
+  width: 346px;
+  height: 691px;
+  padding: 118px 15px 26px;
+  box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border: solid 2px #000;
+  background-color: #fff;
+}
