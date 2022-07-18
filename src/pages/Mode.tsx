@@ -12,8 +12,8 @@ import Logo from '../assets/Logo';
 import { Button, Grid } from '@mui/material';
 import LinkButton from '../components/LinkButton';
 
-import customerImage from '../images/customer.jpeg';
-import merchantImage from '../images/merchant.jpeg';
+import customerImage from '../assets/images/customer.jpeg';
+import merchantImage from '../assets/images/merchant.jpeg';
 import getWindowDimensions from '../hooks/WindowSize';
 
 export default function MenuAppBar() {
@@ -38,7 +38,6 @@ export default function MenuAppBar() {
         <Toolbar
           sx={{
             justifyContent: 'space-between'
-            // justifyContent: 'center'
           }}
         >
           <IconButton
@@ -81,7 +80,6 @@ export default function MenuAppBar() {
                 <MenuItem href="/login" component="a" onClick={handleClose}>
                   카카오 로그인
                 </MenuItem>
-                {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
               </Menu>
             </div>
           )}
@@ -98,87 +96,18 @@ export default function MenuAppBar() {
         <Grid item xs={2}>
           <Grid container alignItems="center">
             <Grid style={{ padding: '1rem' }}>
-              <Box
-                sx={{
-                  width: getWindowDimensions().width * 0.38,
-                  height: getWindowDimensions().width * 0.51,
-                  borderRadius: '8%',
-                  backgroundColor: '#c4c4c4',
-                  '&:hover': {
-                    backgroundColor: 'primary.main',
-                    opacity: [0.9, 0.8, 0.7]
-                  }
-                }}
-              >
-                <Box
-                  sx={{
-                    width: getWindowDimensions().width * 0.38,
-                    height: getWindowDimensions().width * 0.38,
-                    borderRadius: '8%',
-                    backgroundImage: `url(${merchantImage})`,
-                    backgroundSize: 'contain',
-                    backgroundColor: '#fff2ea',
-                    '&:hover': {
-                      backgroundColor: 'primary.main',
-                      opacity: [0.9, 0.8, 0.7]
-                    }
-                  }}
-                ></Box>
-                <Typography
-                  align="center"
-                  sx={{
-                    width: getWindowDimensions().width * 0.3,
-                    height: getWindowDimensions().width * 0.13,
-                    fontFamily: 'Gungseo',
-                    fontSize: getWindowDimensions().width * 0.05,
-                    alignItem: 'center',
-                    margin: '0 auto'
-                  }}
-                >
-                  주인장이유?
-                </Typography>
-              </Box>
+              <LinkButton
+                link="/merchant"
+                name="주인장이유?"
+                image={merchantImage}
+              />
             </Grid>
             <Grid style={{ padding: '1rem' }}>
-              <Box
-                sx={{
-                  width: getWindowDimensions().width * 0.38,
-                  height: getWindowDimensions().width * 0.51,
-                  borderRadius: '8%',
-                  backgroundColor: '#c4c4c4',
-                  '&:hover': {
-                    backgroundColor: 'primary.main',
-                    opacity: [0.9, 0.8, 0.7]
-                  }
-                }}
-              >
-                <Box
-                  sx={{
-                    width: getWindowDimensions().width * 0.38,
-                    height: getWindowDimensions().width * 0.38,
-                    borderRadius: '8%',
-                    backgroundImage: `url(${customerImage})`,
-                    backgroundSize: 'contain',
-                    backgroundColor: '#fff2ea',
-                    '&:hover': {
-                      backgroundColor: 'primary.main',
-                      opacity: [0.9, 0.8, 0.7]
-                    }
-                  }}
-                ></Box>
-                <Typography
-                  align="center"
-                  sx={{
-                    width: getWindowDimensions().width * 0.3,
-                    height: getWindowDimensions().width * 0.13,
-                    fontFamily: 'Gungseo',
-                    fontSize: getWindowDimensions().width * 0.05,
-                    margin: '0 auto'
-                  }}
-                >
-                  손님이유?
-                </Typography>
-              </Box>
+              <LinkButton
+                link="/customer"
+                name="손님이유?"
+                image={customerImage}
+              />
             </Grid>
           </Grid>
         </Grid>
