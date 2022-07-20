@@ -24,7 +24,6 @@ const theme = createTheme({
 export default function FormPropsTextFields() {
   const navigate = useNavigate();
   return (
-<<<<<<< HEAD
     <Box
       display="flex"
       alignItems="center"
@@ -54,14 +53,5 @@ export default function FormPropsTextFields() {
         </Button>
       </ThemeProvider>
     </Box>
-=======
-    <>
-      <TextField
-        label="가게 이름 입력"
-        id="가게 이름 입력"
-        sx={{ width: '15rem', height: '3.75rem' }}
-      />
-    </>
->>>>>>> bbf2920af4442dfb55467f21b64f0fedf95b15ce
   );
 }
