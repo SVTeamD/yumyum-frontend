@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import MakeStore from './pages/MakeStore';
 import Auth from './hooks/Auth';
 import Profile from './hooks/Profile';
+import TakePhoto from './pages/TakePhoto';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/" element={<Mode />} />
           <Route path="/login" element={<Login />} />
           <Route path="/MakeStore" element={<MakeStore />} />
+          <Route path="/MakeStore/TakePhoto" element={<TakePhoto />} />
 
           <Route path="/profile" element={<Profile />} />
           <Route path="/oauth/kakao/callback" element={<Auth />} />
