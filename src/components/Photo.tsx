@@ -1,35 +1,6 @@
-// import * as React from 'react';
-// import { Camera, CameraType } from 'react-camera-pro';
-
-// export default function TakePhoto() {
-//   const camera = React.useRef<CameraType>(null);
-//   const [image, setImage] = React.useState<string | null>(null);
-//   return (
-//     <div>
-//       <iframe src="https://example.com/camera-pro-iframe" allow="camera;" />
-//       {/* <input type="file" accept="image/*" capture="environment" /> */}
-//       <Camera
-//         ref={camera}
-//         errorMessages={{
-//           noCameraAccessible:
-//             'No camera device accessible. Please connect your camera or try a different browser.',
-//           permissionDenied:
-//             'Permission denied. Please refresh and give camera permission.',
-//           switchCamera:
-//             'It is not possible to switch camera to different one because there is only one video device accessible.',
-//           canvas: 'Canvas is not supported.'
-//         }}
-//       />
-//       <button onClick={() => setImage(camera.current!.takePhoto())}></button>
-//       <img src={image!} alt="Taken photo" />
-//     </div>
-//   );
-// }
-
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-// import { Camera, CameraType } from './Camera';
 import { Camera, CameraType } from 'react-camera-pro';
 const Wrapper = styled.div`
   position: fixed;
