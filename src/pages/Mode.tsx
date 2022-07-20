@@ -91,7 +91,7 @@ export default function MenuAppBar() {
         direction="column"
         alignItems="center"
         justifyContent="center"
-        style={{ minHeight: '100vh' }}
+        style={{ minHeight: '80vh' }}
       >
         <Grid item xs={2}>
           <Grid container alignItems="center">
