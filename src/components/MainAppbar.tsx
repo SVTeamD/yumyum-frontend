@@ -2,19 +2,18 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Logo from '../assets/Logo';
-import Grid from '@mui/material/Grid';
-import LinkButton from '../components/LinkButton';
 
-import customerImage from '../assets/images/customer.jpeg';
-import merchantImage from '../assets/images/merchant.jpeg';
-
-export default function Mode() {
+export default function MainAppBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -32,23 +31,39 @@ export default function Mode() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
+      {/* <FormGroup>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={auth}
+              onChange={handleChange}
+              aria-label="login switch"
+            />
+          }
+          label={auth ? 'Logout' : 'Login'}
+        />
+      </FormGroup> */}
       <AppBar position="static" style={{ background: '#fff2ea' }}>
-        <Toolbar
-          sx={{
-            justifyContent: 'space-between'
-          }}
-        >
+        <Toolbar>
           <IconButton
             size="large"
             edge="start"
+            color="default"
             aria-label="menu"
-            sx={{
-              mr: 2
-            }}
           >
             <MenuIcon />
           </IconButton>
-          <Logo />
+          <Typography
+            component="div"
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexGrow: 1,
+              textAlign: 'center'
+            }}
+          >
+            <Logo />
+          </Typography>
           {auth && (
             <div>
               <IconButton
@@ -57,6 +72,7 @@ export default function Mode() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
+                color="default"
               >
                 <AccountCircle />
               </IconButton>
@@ -75,41 +91,13 @@ export default function Mode() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem href="/login" component="a" onClick={handleClose}>
-                  카카오 로그인
-                </MenuItem>
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>
           )}
         </Toolbar>
       </AppBar>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: '80vh' }}
-      >
-        <Grid item xs={2}>
-          <Grid container alignItems="center">
-            <Grid style={{ padding: '1rem' }}>
-              <LinkButton
-                link="/merchant"
-                name="주인장이유?"
-                image={merchantImage}
-              />
-            </Grid>
-            <Grid style={{ padding: '1rem' }}>
-              <LinkButton
-                link="/customer"
-                name="손님이유?"
-                image={customerImage}
-              />
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
     </Box>
   );
 }
