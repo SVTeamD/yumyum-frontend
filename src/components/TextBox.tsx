@@ -2,23 +2,17 @@ import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
-import React from 'react';
-import TextField from '@mui/material/TextField';
-import { height } from '@mui/system';
 
 const theme = createTheme({
   typography: {
     button: {
-      // color: '#000',
       fontSize: '1.5rem'
     }
   },
   components: {
-    // Name of the component ⚛️
     MuiButtonBase: {
       defaultProps: {
-        // The default props to change
-        disableRipple: true // No more ripple, on the whole application 💣!
+        disableRipple: true
       }
     }
   }
@@ -56,12 +50,5 @@ export default function FormPropsTextFields() {
         </Button>
       </ThemeProvider>
     </Box>
-    <>
-      <TextField
-        label="가게 이름 입력"
-        id="가게 이름 입력"
-        sx={{ width: '15rem', height: '3.75rem' }}
-      />
-    </>
   );
 }
