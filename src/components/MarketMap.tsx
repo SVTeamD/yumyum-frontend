@@ -6,13 +6,30 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { styled } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 import Box from '@mui/material/Box';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import ListSubheader from '@mui/material/ListSubheader';
+import IconButton from '@mui/material/IconButton';
+import InfoIcon from '@mui/icons-material/Info';
 import Skeleton from '@mui/material/Skeleton';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import SelectBar from '../components/SelectBar';
+import Paper from '@mui/material/Paper';
+import ButtonBase from '@mui/material/ButtonBase';
+import merchant from '../assets/images/merchant.jpeg';
+import { fontSize } from '@mui/system';
 
 const drawerBleeding = 10;
 
+const Img = styled('img')({
+  margin: 'auto',
+  display: 'block',
+  maxWidth: '100%',
+  maxHeight: '100%'
+});
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
   backgroundColor:
@@ -58,26 +75,38 @@ export default function MarketMap(props: Props) {
   const positions = [
     {
       title: '성민이네 과일가게',
+      category: '과일',
+      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
       latlng: { lat: 33.450705, lng: 126.570677 }
     },
     {
       title: '인철이네 생선가게',
+      category: '생선',
+      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
       latlng: { lat: 33.450936, lng: 126.569477 }
     },
     {
       title: '주원이네 정육점',
+      category: '정육점',
+      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
       latlng: { lat: 33.450879, lng: 126.56994 }
     },
     {
       title: '주희네 백반',
+      category: '식당',
+      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
       latlng: { lat: 33.450723, lng: 126.57008 }
     },
     {
       title: '현정이네 칼국수',
+      category: '식당',
+      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
       latlng: { lat: 33.450693, lng: 126.570738 }
     },
     {
       title: '상우네 국밥',
+      category: '식당',
+      image: { merchant },
       latlng: { lat: 33.4506393, lng: 126.570738 }
     }
   ];
@@ -122,7 +151,7 @@ export default function MarketMap(props: Props) {
         <Global
           styles={{
             '.MuiDrawer-root > .MuiPaper-root': {
-              height: `calc(50% - ${drawerBleeding}px)`,
+              height: `calc(22% - ${drawerBleeding}px)`,
               overflow: 'visible'
             }
           }}
@@ -146,31 +175,76 @@ export default function MarketMap(props: Props) {
               borderTopLeftRadius: 8,
               borderTopRightRadius: 8,
               visibility: 'visible',
+              paddingLeft: '1rem',
+              paddingRight: '1rem',
+              paddingTop: '1rem',
               right: 0,
-              left: 0
+              left: 0,
+              height: '100%',
+              backgroundColor: '#fff'
             }}
           >
             <Puller />
-            <Typography
+            <Paper
               sx={{
                 p: 2,
-                color: 'text.secondary'
+                margin: 'auto',
+                height: '100%',
+                flexGrow: 1,
+                backgroundColor: (theme) =>
+                  theme.palette.mode === 'dark' ? '#1A2027' : '#fff'
               }}
             >
-              {selected}
-            </Typography>
-          </StyledBox>
-          <StyledBox
-            sx={{
-              px: 2,
-              pb: 2,
-              height: '100%',
-              overflow: 'auto'
-            }}
-          >
-            {selected}
-            Hello
-            {/* <Skeleton variant="rectangular" height="100%" /> */}
+              <Grid container spacing={2}>
+                <Grid item>
+                  <ButtonBase sx={{ width: 128, height: 128 }}>
+                    <Img
+                      alt="complex"
+                      src={merchant}
+                      sx={{
+                        borderRadius: '2rem',
+                        border: 'solid 2px #d3d3d3'
+                      }}
+                    />
+                  </ButtonBase>
+                </Grid>
+                <Grid item xs={6} sm container>
+                  <Grid item xs container direction="column" spacing={0}>
+                    <ButtonBase
+                      href={`/stores/details/${selected}`}
+                      sx={{
+                        width: '11.5rem',
+                        height: '8rem',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        backgroundColor: '#ff1744',
+                        alignItems: 'center',
+                        borderRadius: '2rem',
+                        border: 'solid 2px #d3d3d3',
+                        boxShadow: '1rem',
+                        padding: '1rem'
+                      }}
+                    >
+                      <Grid item xs>
+                        <Typography
+                          gutterBottom
+                          variant="h6"
+                          component="div"
+                          textAlign="center"
+                          fontWeight="bold"
+                          sx={{
+                            color: '#fff'
+                          }}
+                        >
+                          {positions[selected].title} <br />
+                          주문하기
+                        </Typography>
+                      </Grid>
+                    </ButtonBase>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Paper>
           </StyledBox>
         </SwipeableDrawer>
       </Root>

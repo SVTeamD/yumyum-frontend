@@ -19,7 +19,16 @@ const MenuProps = {
   }
 };
 
-const names = ['분식', '중식', '양식', '한식', '치킨', '피자', '야식']; // GET FROM STORES API
+const names = [
+  '생선',
+  '정육',
+  '건어물',
+  '백반',
+  '분식',
+  '과일',
+  '간식',
+  '기타'
+]; // GET FROM STORES API
 
 export default function MultipleSelectCheckmarks() {
   const [personName, setPersonName] = React.useState<string[]>([]);
