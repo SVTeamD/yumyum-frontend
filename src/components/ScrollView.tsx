@@ -1,25 +1,23 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import MenuList from './MenuList';
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary
-}));
+import StoreDetails from './StoreDetails';
 
 export default function ScrollView() {
+  const stores = {
+    name: '아리안',
+    images: 'https://source.unsplash.com/random/200x200'
+  };
   return (
     <>
       <Box sx={{ width: '100%', padding: '1rem' }}>
-        <Stack spacing={2}>
+        <StoreDetails stores={stores} />
+        <br />
+        <Paper>
           <MenuList />
-        </Stack>
+        </Paper>
       </Box>
     </>
   );
