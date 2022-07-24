@@ -5,7 +5,9 @@ import { styled } from '@mui/material/styles';
 import MenuList from './MenuList';
 import StoreDetails from './StoreDetails';
 
-export default function ScrollView() {
+import OrderDrawer from './OrderDrawer';
+
+export default function OrderMain() {
   const stores = {
     name: '아리안',
     images: 'https://source.unsplash.com/random/200x200'
@@ -19,6 +21,7 @@ export default function ScrollView() {
           <MenuList />
         </Paper>
       </Box>
+      <OrderDrawer />
     </>
   );
 }

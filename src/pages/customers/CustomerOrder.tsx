@@ -1,11 +1,11 @@
 import MainAppBar from '../../components/MainAppbar';
-import ScrollView from '../../components/ScrollView';
+import OrderMain from '../../components/OrderMain';
 
 export default function CustomerOrder() {
   return (
     <>
       <MainAppBar />
-      <ScrollView />
+      <OrderMain />
     </>
   );
 }
