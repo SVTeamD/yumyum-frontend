@@ -7,6 +7,7 @@ import Profile from './hooks/Profile';
 import TakePhoto from './pages/TakePhoto';
 import CustomerLoad from './pages/CustomerLoad';
 import MerchantLoad from './pages/MerchantLoad';
+import StoreRegister from './pages/StoreRegister';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/MakeStore/TakePhoto" element={<TakePhoto />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/oauth/kakao/callback" element={<Auth />} />
+          <Route path="/merchant/register" element={<StoreRegister />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -14,7 +14,7 @@ export default function MerchantLoad() {
     <Load
       context="아직도 가게 등록을 안했슈? 어서 해봐유!"
       button_context="가게 등록하기"
-      link="/stores/new"
+      link="/merchant/register"
       image={merchantImage}
     ></Load>
   );
