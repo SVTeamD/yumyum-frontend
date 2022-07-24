@@ -15,7 +15,7 @@ export default function ScrollView() {
       <Box sx={{ width: '100%', padding: '1rem' }}>
         <StoreDetails stores={stores} />
         <br />
-        <Paper>
+        <Paper sx={{ borderRadius: '1rem' }}>
           <MenuList />
         </Paper>
       </Box>

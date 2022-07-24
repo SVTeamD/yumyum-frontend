@@ -20,7 +20,7 @@ export default function StoreDetails({ stores }: Props) {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
+          height="180"
           image={market}
           alt="store picture"
         />

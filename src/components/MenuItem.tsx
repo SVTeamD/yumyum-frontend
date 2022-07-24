@@ -7,12 +7,16 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import OrderChoice from './OrderChoice';
 
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
   maxWidth: '100%',
-  maxHeight: '100%'
+  maxHeight: '100%',
+  objectFit: 'cover'
 });
 
 interface Props {
@@ -24,10 +28,22 @@ interface Props {
 }
 
 export default function MenuItem({ menus }: Props) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <>
-      <ButtonBase sx={{ width: '100%' }}>
-        <ListItem>
+      <ButtonBase
+        sx={{ width: '100%', height: '100%' }}
+        onClick={handleClickOpen}
+      >
+        <ListItem disablePadding sx={{ paddingLeft: '1.5rem' }}>
           <ListItemText
             primary={
               <React.Fragment>
@@ -55,20 +71,20 @@ export default function MenuItem({ menus }: Props) {
             }
           />
           <ListItemAvatar>
-            <Box sx={{ width: 185, height: 128 }}>
+            <Box sx={{ width: '12rem', height: '100%' }}>
               <Img
                 alt="complex"
                 src={menus.image}
                 sx={{
-                  borderRadius: '1rem',
-                  border: 'solid 2px #d3d3d3'
+                  borderStartEndRadius: '1rem',
+                  border: 'solid 1px #d3d3d3'
                 }}
               />
             </Box>
           </ListItemAvatar>
         </ListItem>
       </ButtonBase>
-      <Divider component="li" sx={{ borderBottomWidth: '0.2rem' }} />
+      <Divider component="li" />
     </>
   );
 }

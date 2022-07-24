@@ -59,6 +59,7 @@ export default function MenuList() {
   ];
   return (
     <List
+      disablePadding
       sx={{
         width: '100%',
         bgcolor: 'background.paper',
