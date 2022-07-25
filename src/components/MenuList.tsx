@@ -1,16 +1,12 @@
 import * as React from 'react';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import { styled } from '@mui/material/styles';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ButtonBase from '@mui/material/ButtonBase';
-import Typography from '@mui/material/Typography';
 import MenuItem from './MenuItem';
+import OrderDrawer from './OrderDrawer';
 
 export default function MenuList() {
-  const menus = [
+  const [checked, setChecked] = React.useState([0]);
+
+  const menusList = [
     {
       title: '생선구이',
       cost: 10000,
@@ -58,18 +54,26 @@ export default function MenuList() {
     }
   ];
   return (
-    <List
-      disablePadding
-      sx={{
-        width: '100%',
-        bgcolor: 'background.paper',
-        borderRadius: '1rem',
-        justifyContent: 'space-between'
-      }}
-    >
-      {menus.map((menus, index) => (
-        <MenuItem menus={menus} />
-      ))}
-    </List>
+    <>
+      <List
+        disablePadding
+        sx={{
+          width: '100%',
+          bgcolor: 'background.paper',
+          borderRadius: '1rem',
+          justifyContent: 'space-between'
+        }}
+      >
+        {menusList.map((menu, index) => (
+          <MenuItem
+            menus={menu}
+            index={index}
+            setChecked={setChecked}
+            checked={checked}
+          />
+        ))}
+      </List>
+      <OrderDrawer menus={menusList} checked={checked} />
+    </>
   );
 }

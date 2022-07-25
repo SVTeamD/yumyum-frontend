@@ -5,8 +5,6 @@ import { styled } from '@mui/material/styles';
 import MenuList from './MenuList';
 import StoreDetails from './StoreDetails';
 
-import OrderDrawer from './OrderDrawer';
-
 export default function OrderMain() {
   const stores = {
     name: '아리안',
@@ -21,7 +19,6 @@ export default function OrderMain() {
           <MenuList />
         </Paper>
       </Box>
-      <OrderDrawer />
     </>
   );
 }

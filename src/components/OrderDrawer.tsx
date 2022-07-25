@@ -5,15 +5,30 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { grey } from '@mui/material/colors';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
 const drawerBleeding = 65;
 
 interface Props {
   window?: () => Window;
+  checked: number[];
+  menus: {
+    title: string;
+    cost: number;
+    image: string;
+  }[];
 }
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#000' : '#fff',
+  ...theme.typography.subtitle1,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary
+}));
 
 const Root = styled('div')(({ theme }) => ({
   //   height: '10%',
@@ -35,7 +50,7 @@ const Puller = styled(Box)(({ theme }) => ({
 }));
 
 export default function OrderDrawer(props: Props) {
-  const { window } = props;
+  const { window, menus, checked } = props;
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -108,7 +123,44 @@ export default function OrderDrawer(props: Props) {
             overflow: 'auto'
           }}
         >
-          <Skeleton variant="rectangular" height="100%" />
+          <Box sx={{ width: '100%' }}>
+            <Stack spacing={2}>
+              {checked.map((value, index) => (
+                <Item>{menus[value].title}</Item>
+              ))}
+            </Stack>
+          </Box>
+        </StyledBox>
+        <StyledBox
+          sx={{
+            px: 2,
+            pb: 2,
+            height: '30%',
+            overflow: 'auto'
+          }}
+        >
+          <Box sx={{ width: '100%' }}>
+            <Typography>
+              <Box sx={{ textAlign: 'center' }}>
+                <Button
+                  color="error"
+                  variant="contained"
+                  sx={{
+                    p: 2,
+                    borderRadius: '2rem',
+                    width: '100%',
+                    border: '2px solid #D72638',
+                    // color: '#000',
+                    fontSize: '1.2rem',
+                    fontWeight: 'bold',
+                    fontFamily: 'sans-serif'
+                  }}
+                >
+                  주문하기
+                </Button>
+              </Box>
+            </Typography>
+          </Box>
         </StyledBox>
       </SwipeableDrawer>
     </Root>
