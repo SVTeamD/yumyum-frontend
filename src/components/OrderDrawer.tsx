@@ -9,6 +9,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import OrderChoice from './OrderChoice';
+import Dialog from '@mui/material/Dialog';
 
 const drawerBleeding = 65;
 
@@ -20,6 +22,8 @@ interface Props {
     cost: number;
     image: string;
   }[];
+  bill: number;
+  handleTotalBill: () => void;
 }
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -27,11 +31,13 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.subtitle1,
   padding: theme.spacing(1),
   textAlign: 'center',
-  color: theme.palette.text.secondary
+  color: theme.palette.text.secondary,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between'
 }));
 
 const Root = styled('div')(({ theme }) => ({
-  //   height: '10%',
   backgroundColor: theme.palette.mode === 'light' ? grey[100] : '#000'
 }));
 
@@ -50,17 +56,54 @@ const Puller = styled(Box)(({ theme }) => ({
 }));
 
 export default function OrderDrawer(props: Props) {
-  const { window, menus, checked } = props;
+  const { window, menus, checked, bill, handleTotalBill } = props;
   const [open, setOpen] = React.useState(false);
+  // eslint-disable-next-line prefer-const
+  let [count, setCount] = React.useState(Array(menus.length).fill(0));
+  // eslint-disable-next-line prefer-const
+  let [totalBill, setTotalBill] = React.useState(0);
+  const [openDialog, setOpenDialog] = React.useState(false);
+  const [takeOut, setTakeOut] = React.useState(false);
+
+  const toggleTakeOut = (isTakeOut: boolean) => {
+    setTakeOut(isTakeOut);
+  };
+
+  const handleClickOpen = () => {
+    setOpenDialog(true);
+  };
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
+    handleTotalBill();
   };
 
-  // This is used only for the example
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
+  function incrementCount(index: number) {
+    count[index] = count[index] + 1;
+    totalBill += menus[index].cost;
+    setCount(count);
+    setTotalBill(totalBill);
+  }
+
+  function decrementCount(index: number) {
+    count[index] = count[index] - 1;
+    if (count[index] < 0) {
+      count[index] = 0;
+    }
+    totalBill -= menus[index].cost;
+    setCount(count);
+    setTotalBill(totalBill);
+  }
+
+  React.useEffect(() => {
+    console.log(totalBill);
+  }, [totalBill]);
   return (
     <Root>
       <CssBaseline />
@@ -117,40 +160,59 @@ export default function OrderDrawer(props: Props) {
         </StyledBox>
         <StyledBox
           sx={{
-            px: 2,
-            pb: 2,
+            px: 3,
+            pb: 5,
             height: '100%',
-            overflow: 'auto'
+            overflow: 'auto',
+            paddingTop: '1rem'
           }}
         >
           <Box sx={{ width: '100%' }}>
             <Stack spacing={2}>
               {checked.map((value, index) => (
-                <Item>{menus[value].title}</Item>
+                <Box>
+                  <Item>
+                    {menus[value].title}
+                    <br />
+                    {menus[value].cost * count[value]}원
+                    <Button onClick={() => decrementCount(value)}>-</Button>
+                    {count[value]}인분
+                    <Button onClick={() => incrementCount(value)}>+</Button>
+                  </Item>
+                </Box>
               ))}
             </Stack>
           </Box>
         </StyledBox>
         <StyledBox
           sx={{
-            px: 2,
-            pb: 2,
+            boxShadow: '1px 3px 5px 5px #9E9E9E',
+            padding: '1rem',
             height: '30%',
             overflow: 'auto'
           }}
         >
           <Box sx={{ width: '100%' }}>
             <Typography>
-              <Box sx={{ textAlign: 'center' }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  textAlign: 'center',
+                  alignItems: 'center',
+                  justifyContent: 'space-between'
+                }}
+              >
+                <Typography fontSize="1.5rem">총 금액: {totalBill}</Typography>
                 <Button
                   color="error"
                   variant="contained"
+                  onClick={handleClickOpen}
+                  // href={`/order/details/`}
                   sx={{
-                    p: 2,
-                    borderRadius: '2rem',
-                    width: '100%',
+                    p: 1,
+                    borderRadius: '1rem',
+                    width: '50%',
                     border: '2px solid #D72638',
-                    // color: '#000',
                     fontSize: '1.2rem',
                     fontWeight: 'bold',
                     fontFamily: 'sans-serif'
@@ -163,6 +225,9 @@ export default function OrderDrawer(props: Props) {
           </Box>
         </StyledBox>
       </SwipeableDrawer>
+      <Dialog open={openDialog} onClose={handleClose}>
+        <OrderChoice takeOut={takeOut} />
+      </Dialog>
     </Root>
   );
 }

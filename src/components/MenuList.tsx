@@ -5,7 +5,15 @@ import OrderDrawer from './OrderDrawer';
 
 export default function MenuList() {
   const [checked, setChecked] = React.useState([0]);
+  const [totalBill, setTotalBill] = React.useState(0);
 
+  const handleTotalBill = () => {
+    let total = 0;
+    checked.forEach((index) => {
+      total += menusList[index].cost;
+    });
+    setTotalBill(total);
+  };
   const menusList = [
     {
       title: '생선구이',
@@ -73,7 +81,13 @@ export default function MenuList() {
           />
         ))}
       </List>
-      <OrderDrawer menus={menusList} checked={checked} />
+
+      <OrderDrawer
+        menus={menusList}
+        checked={checked}
+        bill={totalBill}
+        handleTotalBill={handleTotalBill}
+      />
     </>
   );
 }

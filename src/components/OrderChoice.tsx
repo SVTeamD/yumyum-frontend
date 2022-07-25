@@ -3,7 +3,11 @@ import Button from '@mui/material/Button';
 import TakeoutDiningIcon from '@mui/icons-material/TakeoutDining';
 import StoreMallDirectoryIcon from '@mui/icons-material/StoreMallDirectory';
 
-export default function OrderChoice() {
+interface Props {
+  takeOut: boolean;
+}
+
+export default function OrderChoice({ takeOut }: Props) {
   return (
     <div>
       <Grid
@@ -18,13 +22,19 @@ export default function OrderChoice() {
           <Grid container alignItems="center">
             <Grid style={{ padding: '1rem' }}>
               <Button
-                href="/order/take-out"
+                onClick={() => {
+                  takeOut = true;
+                }}
+                variant="contained"
+                color="success"
+                href="/order/details"
                 startIcon={<TakeoutDiningIcon />}
                 sx={{
+                  fontSize: '1rem',
                   weight: '5rem',
                   height: '5rem',
                   color: '#000',
-                  border: 'solid 2px #d3d3d3'
+                  borderRadius: '1rem'
                 }}
               >
                 포장하기
@@ -32,13 +42,19 @@ export default function OrderChoice() {
             </Grid>
             <Grid style={{ padding: '1rem' }}>
               <Button
-                href="/order/in-store"
+                onClick={() => {
+                  takeOut = false;
+                }}
+                variant="contained"
+                color="primary"
+                href="/order/details"
                 startIcon={<StoreMallDirectoryIcon />}
                 sx={{
+                  fontSize: '1rem',
                   weight: '5rem',
                   height: '5rem',
                   color: '#000',
-                  border: 'solid 2px #d3d3d3'
+                  borderRadius: '1rem'
                 }}
               >
                 먹고가기
