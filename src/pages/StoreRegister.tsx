@@ -95,7 +95,7 @@ export default function MenuAppBar() {
 
           <TextBox
             button_context="사진 추가하게 좀 눌러봐유!"
-            link="/MakeStore/TakePhoto"
+            link="/merchant/register/uploadPhoto"
           ></TextBox>
 
           <div>무슨 장사 해유?</div>
@@ -106,7 +106,7 @@ export default function MenuAppBar() {
 
           <TextBox
             button_context="사진 추가하게 좀 눌러봐유!"
-            link="/MakeStore/TakePhoto"
+            link="/merchant/register/uploadPhoto"
           ></TextBox>
 
           <div>가계의 메뉴판을 찍어주세요! 자동으로 메뉴가 등록됩니다</div>

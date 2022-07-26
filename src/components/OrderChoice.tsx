@@ -1,9 +1,17 @@
+import { makeStyles } from '@material-ui/styles';
+import { Button } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import TakeoutDiningIcon from '@mui/icons-material/TakeoutDining';
-import StoreMallDirectoryIcon from '@mui/icons-material/StoreMallDirectory';
-
-export default function OrderChoice() {
+const useStyles = makeStyles({
+  root: {
+    borderWidth: '20px',
+    borderColor: 'rgba(0,0,0,0.2)',
+    borderStyle: 'solid'
+  }
+});
+export default function App() {
+  const classes = useStyles();
   return (
     <div>
       <Grid
