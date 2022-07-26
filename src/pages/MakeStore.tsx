@@ -8,9 +8,37 @@ import UploadButtons from '../components/UploadButtons';
 
 export default function MakeStore() {
   return (
-    <div>
-      <UploadButtons></UploadButtons>
-      <CategorySelect></CategorySelect>
-    </div>
+    <Box>
+      <Box
+        sx={{
+          marginTop: '12rem',
+          display: 'flex',
+          alignContent: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <UploadButtons></UploadButtons>
+      </Box>
+      <Box
+        sx={{
+          marginTop: '5rem',
+          display: 'flex',
+          alignContent: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <CategorySelect></CategorySelect>
+      </Box>
+      <Box
+        sx={{
+          marginTop: '5rem',
+          display: 'flex',
+          alignContent: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <UploadButtons></UploadButtons>
+      </Box>
+    </Box>
   );
 }
