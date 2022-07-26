@@ -4,6 +4,8 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
 
+//사진 업로드
+
 export default function UploadButtons() {
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
