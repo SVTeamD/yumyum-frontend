@@ -43,8 +43,7 @@ export default function CategorySelect() {
                 value={category}
                 onChange={handleChange}
                 input={<OutlinedInput label="Category" id="demo-dialog-native" />}
-              >
-                
+                >
                 <option value={'식당'}>식당</option>
                 <option value={'정육점'}>정육점</option>
                 <option value={'생선가게'}>생선가게</option>
@@ -52,7 +51,6 @@ export default function CategorySelect() {
                 <option value={'반찬가게'}>반찬가게</option>
                 <option value={'옷가게'}>옷가게</option>
                 <option value={'기타'}>기타</option>
-                
               </Select>
             </FormControl>
           </Box>
