@@ -23,11 +23,16 @@ export default function CategorySelect() {
 
   return (
     <div>
-      <Button sx={{ display: 'block', mt: 2 }} onClick={handleOpen}>
-        Choose the category
+      <Button
+        sx={{ display: 'block', mt: 2, fontSize: 25, color: 'black' }}
+        onClick={handleOpen}
+      >
+        무슨장사해유?
       </Button>
-      <FormControl sx={{ m: 1, minWidth: 270 }}>
-        <InputLabel id="demo-controlled-open-select-label">Category</InputLabel>
+      <FormControl sx={{ m: 1, minWidth: 350 }}>
+        <InputLabel id="demo-controlled-open-select-label">
+          장사명칭 입력하려면 눌러봐유!
+        </InputLabel>
         <Select
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
@@ -53,4 +58,3 @@ export default function CategorySelect() {
     </div>
   );
 }
-
