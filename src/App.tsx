@@ -27,6 +27,7 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/order/details" element={<OrderDetails />} />
           <Route path="/oauth/kakao/callback" element={<Auth />} />
+          <Route path="/stores/new" element={<MakeStore />} />
         </Routes>
       </BrowserRouter>
     </div>
