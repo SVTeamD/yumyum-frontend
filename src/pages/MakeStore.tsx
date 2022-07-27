@@ -27,7 +27,6 @@ export default function Mode() {
     setAuth(event.target.checked);
   };
 
-export default function MakeStore() {
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
