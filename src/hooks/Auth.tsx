@@ -11,7 +11,7 @@ const Auth = () => {
 
   // calllback으로 받은 인가코드
   const code = new URL(window.location.href).searchParams.get('code');
-
+  console.log(code);
   const history = useNavigate();
 
   const getToken = async () => {
@@ -33,8 +33,11 @@ const Auth = () => {
       // Kakao Javascript SDK 초기화
       window.Kakao.init(REST_API_KEY);
       // access token 설정
+      console.log(res.data.access_token);
       window.Kakao.Auth.setAccessToken(res.data.access_token);
-      history('/profile');
+      localStorage.setItem('bearer', res.data.access_token);
+      localStorage.setItem('login', 'true');
+      history('/');
     } catch (err) {
       console.log(err);
     }
