@@ -17,13 +17,12 @@ export default function ImageUpload() {
     <div>
       <label htmlFor="upload-button">
         {image.preview ? (
-          <img src={image.preview} alt="dummy" width="300" height="300" />
+          <img src={image.preview} alt="dummy" width="390" height="390" />
         ) : (
           <>
             <Box
-              className="flex flex-wrap items-center px-12 w-40 h-20 text-white text-center 
-              text-base "
-              style={{ backgroundColor: '#c4c4c4' }}
+              className="items-center rounded text-base text-center py-10"
+              style={{ backgroundColor: '#EAEAEA' }}
             >
               Upload
             </Box>
