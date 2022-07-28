@@ -4,9 +4,17 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
+import Chip from '@mui/material/Chip';
+import Box from '@mui/material/Box';
+
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import getWindowDimensions from '../hooks/WindowSize';
+
+interface Props {
+  setSelected: React.Dispatch<React.SetStateAction<string[]>>;
+  handleBarClose: () => void;
+}
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -20,28 +28,31 @@ const MenuProps = {
 };
 
 const names = [
-  '생선',
-  '정육',
-  '건어물',
-  '백반',
-  '분식',
-  '과일',
-  '간식',
+  '식당',
+  '생선가게',
+  '정육점',
+  '과일가게',
+  '반찬가게',
+  '옷가게',
   '기타'
 ]; // GET FROM STORES API
 
-export default function MultipleSelectCheckmarks() {
-  const [personName, setPersonName] = React.useState<string[]>([]);
+export default function MultipleSelectCheckmarks({
+  setSelected,
+  handleBarClose
+}: Props) {
+  const [category, setCategory] = React.useState<string[]>([]);
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+  const handleChange = (event: SelectChangeEvent<typeof category>) => {
     const {
       target: { value }
     } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
+    setCategory(typeof value === 'string' ? value.split(',') : value);
   };
+
+  React.useEffect(() => {
+    setSelected(category);
+  });
 
   return (
     <div>
@@ -58,16 +69,23 @@ export default function MultipleSelectCheckmarks() {
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
+          onClose={handleBarClose}
           multiple
-          value={personName}
+          value={category}
           onChange={handleChange}
           input={<OutlinedInput label="어떤 상인을 알아볼깝쇼?" />}
-          renderValue={(selected) => selected.join(', ')}
+          renderValue={(selected) => (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+              {selected.map((value) => (
+                <Chip key={value} label={value} />
+              ))}
+            </Box>
+          )}
           MenuProps={MenuProps}
         >
           {names.map((name) => (
             <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
+              <Checkbox checked={category.indexOf(name) > -1} />
               <ListItemText primary={name} />
             </MenuItem>
           ))}

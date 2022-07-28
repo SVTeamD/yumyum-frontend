@@ -1,6 +1,6 @@
 export interface User {
   id: number;
-  isCustomer: boolean;
+  userType: boolean;
   name: string;
   gender: string;
   ageRange: string;
@@ -8,7 +8,7 @@ export interface User {
 }
 export interface UserSchema {
   id: number;
-  isCustomer: boolean;
+  userType: boolean;
   name: string;
   gender: string;
   ageRange: string;
@@ -16,9 +16,9 @@ export interface UserSchema {
 }
 
 export interface UserCreateSchema {
-  isCustomer: boolean | null;
+  user_type: boolean;
   name: string;
   gender: string | null;
-  ageRange: string | null;
-  phoneNumber: string | null;
+  age_range: string | null;
+  phone_num: string | null;
 }

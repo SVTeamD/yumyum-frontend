@@ -1,4 +1,4 @@
-import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
+import { Map as Map_, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import * as React from 'react';
 import { Global } from '@emotion/react';
 import Button from '@mui/material/Button';
@@ -13,7 +13,8 @@ import SelectBar from '../components/SelectBar';
 import Paper from '@mui/material/Paper';
 import ButtonBase from '@mui/material/ButtonBase';
 import merchant from '../assets/images/merchant.jpeg';
-import { fontSize } from '@mui/system';
+import Stores from '../apis/v1/Stores';
+import { Store, StoreSchema } from '../apis/v1/schemas/Stores';
 
 const drawerBleeding = 10;
 
@@ -52,92 +53,90 @@ interface Props {
 }
 
 export default function MarketMap(props: Props) {
-  const { window } = props;
+  const { window, latitude, longitude } = props;
   const [open, setOpen] = React.useState(false);
   const [selected, setSelected] = React.useState<number>(0);
-
+  const [toggleSelected, setToggleSelected] = React.useState<string[]>([]);
+  const [positions, setPositions] = React.useState<StoreSchema[]>([]);
+  const [stores, setStore] = React.useState<StoreSchema[]>([
+    { id: 0, name: '', category: '', photo_url: '', points: [0, 0] }
+  ]);
+  const storeState: StoreSchema[] = [];
   const toggleDrawer = (newOpen: boolean, indexOf: number) => () => {
     setOpen(newOpen);
     setSelected(indexOf);
   };
 
+  const handleBarClose = () => {
+    toggleSelected.map((checked, index) => {
+      const result = positions.filter((content) => content.category == checked);
+      result.forEach((value, index) => {
+        storeState.push(value);
+      });
+    });
+    setStore(storeState);
+    console.log(stores);
+  };
   // This is used only for the example
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  const positions = [
-    {
-      title: '성민이네 과일가게',
-      category: '과일',
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-      latlng: { lat: 33.450705, lng: 126.570677 }
-    },
-    {
-      title: '인철이네 생선가게',
-      category: '생선',
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-      latlng: { lat: 33.450936, lng: 126.569477 }
-    },
-    {
-      title: '주원이네 정육점',
-      category: '정육점',
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-      latlng: { lat: 33.450879, lng: 126.56994 }
-    },
-    {
-      title: '주희네 백반',
-      category: '식당',
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-      latlng: { lat: 33.450723, lng: 126.57008 }
-    },
-    {
-      title: '현정이네 칼국수',
-      category: '식당',
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-      latlng: { lat: 33.450693, lng: 126.570738 }
-    },
-    {
-      title: '상우네 국밥',
-      category: '식당',
-      image: { merchant },
-      latlng: { lat: 33.4506393, lng: 126.570738 }
-    }
-  ];
+  const category = new Map<string, string>();
+  category.set('식당', '🥘');
+  category.set('과일가게', '🍓');
+  category.set('정육점', '🍖');
+  category.set('생선가게', '🐟');
+  category.set('반찬가게', '🍡');
+  category.set('옷가게', '👕');
+  category.set('기타', '👻');
+
+  const loadStores = async () => {
+    const data = await Stores.getStores();
+    setPositions(data);
+  };
+
+  React.useEffect(() => {
+    loadStores();
+  }, []);
   return (
     <>
-      {/* <div style={{ position: 'relative', zIndex: '1' }}> */}
-      <SelectBar />
-      {/* </div> */}
-      {/* <div style={{ position: 'relative', zIndex: '2' }}> */}
-      <Map
+      <SelectBar
+        setSelected={setToggleSelected}
+        handleBarClose={handleBarClose}
+      />
+      <Map_
         center={{
-          lat: positions[0].latlng.lat,
-          lng: positions[0].latlng.lng
+          lat: latitude,
+          lng: longitude
         }}
         style={{ width: '100%', height: '90%' }}
-        level={1} // 지도의 확대 레벨
+        level={4} // 지도의 확대 레벨
       >
-        {positions.map((position, index) => (
+        {stores.map((store, index) => (
           <CustomOverlayMap
             position={{
-              lat: position.latlng.lat,
-              lng: position.latlng.lng
+              lat: store.points[0],
+              lng: store.points[1]
             }}
             clickable={true}
           >
             <Button onClick={toggleDrawer(true, index)}>
               <div
                 className="label"
-                style={{ color: '#000', backgroundColor: '#fff' }}
+                style={{
+                  color: '#fff',
+                  backgroundColor: '#2e2f2f',
+                  borderRadius: '1rem',
+                  padding: '0.32rem'
+                }}
               >
-                <span className="left">{index}</span>
-                <span className="center">{position.title}</span>
-                <span className="right"></span>
+                <span className="left">{category.get(store.category)}</span>
+                <span className="center">{store.name}</span>
               </div>
             </Button>
           </CustomOverlayMap>
         ))}
-      </Map>
+      </Map_>
       {/* </div> */}
       <Root>
         <CssBaseline />
@@ -204,7 +203,7 @@ export default function MarketMap(props: Props) {
                 <Grid item xs={6} sm container>
                   <Grid item xs container direction="column" spacing={0}>
                     <ButtonBase
-                      href={`/stores/details/${selected}`}
+                      href={`/stores/details/${stores[selected]?.id}`}
                       sx={{
                         width: '11.5rem',
                         height: '8rem',
@@ -229,7 +228,8 @@ export default function MarketMap(props: Props) {
                             color: '#fff'
                           }}
                         >
-                          {positions[selected].title} <br />
+                          {stores[selected]?.name}
+                          <br />
                           주문하기
                         </Typography>
                       </Grid>
