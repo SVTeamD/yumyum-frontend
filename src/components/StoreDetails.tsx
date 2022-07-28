@@ -4,8 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-
-import market from '../assets/images/market.jpg';
+import fishhouse from '../assets/images/fishhouse.jpeg';
 
 interface Props {
   stores: {
@@ -21,7 +20,7 @@ export default function StoreDetails({ stores }: Props) {
         <CardMedia
           component="img"
           height="180"
-          image={market}
+          image={fishhouse}
           alt="store picture"
         />
         <CardContent>
@@ -29,8 +28,7 @@ export default function StoreDetails({ stores }: Props) {
             {stores.name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            바다 향기가 솔솔나는 오션's 횟집, 땅 고기도 팔아요.
           </Typography>
         </CardContent>
       </CardActionArea>

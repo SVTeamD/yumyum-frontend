@@ -7,8 +7,8 @@ import StoreDetails from './StoreDetails';
 
 export default function OrderMain() {
   const stores = {
-    name: '아리안',
-    images: 'https://source.unsplash.com/random/200x200'
+    name: '오션네 바다횟집',
+    images: '../assets/images/fishhouse'
   };
   return (
     <>

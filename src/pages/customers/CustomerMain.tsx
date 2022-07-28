@@ -10,7 +10,7 @@ export default function CustomerMain() {
       positionOptions: {
         enableHighAccuracy: false
       },
-      userDecisionTimeout: 7000
+      userDecisionTimeout: 10000
     });
   return !isGeolocationAvailable ? (
     <div>Your browser does not support Geolocation</div>

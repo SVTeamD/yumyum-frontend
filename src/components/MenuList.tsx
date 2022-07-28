@@ -21,22 +21,22 @@ export default function MenuList() {
   };
   const menusList = [
     {
-      title: '생선구이',
+      title: '전어구이',
       cost: 10000,
       image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
     },
     {
-      title: '삼겹살',
+      title: '연어회',
       cost: 30000,
       image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
     },
     {
-      title: '제육볶음',
+      title: '갈치조림',
       cost: 10000,
       image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
     },
     {
-      title: '고등어조림',
+      title: '전어회',
       cost: 20000,
       image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
     },
