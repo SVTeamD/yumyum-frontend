@@ -16,7 +16,7 @@ export default function ImageUpload() {
 
   return (
     <div>
-      <label htmlFor="upload-button">
+      <label htmlFor="menu-upload">
         {image.preview ? (
           <img src={image.preview} alt="dummy" width="390" height="390" />
         ) : (
@@ -34,7 +34,7 @@ export default function ImageUpload() {
       </label>
       <input
         type="file"
-        id="upload-button"
+        id="menu-upload"
         style={{ display: 'none' }}
         onChange={handleChange}
       />

@@ -18,6 +18,10 @@ import CategorySelect from '../components/CategorySelect';
 import { fontSize } from '@mui/system';
 import { Typography } from '@mui/material';
 import home from '../assets/images/home.png';
+import ImageUpload from '../components/ImageUpload';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import MenuUpload from '../components/MenuUpload';
 
 export default function Mode() {
   const [auth, setAuth] = React.useState(true);
@@ -105,7 +109,7 @@ export default function Mode() {
           justifyContent: 'center'
         }}
       >
-        <UploadButtons></UploadButtons>
+        <ImageUpload></ImageUpload>
       </Box>
 
       <Box
@@ -137,7 +141,7 @@ export default function Mode() {
           justifyContent: 'center'
         }}
       >
-        <UploadButtons></UploadButtons>
+        <MenuUpload></MenuUpload>
       </Box>
       <Box
         sx={{
