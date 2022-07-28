@@ -19,3 +19,12 @@ export interface StoreSchema {
   description: string;
   photoUrl: string;
 }
+
+//create
+export interface StoreCreateSchema {
+  category: string;
+  locationId: number;
+  name: string;
+  description: string;
+  photoUrl: string;
+}
