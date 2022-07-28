@@ -1,3 +1,4 @@
+import * as React from 'react';
 import customerImage from '../../assets/images/customer.jpeg';
 import Load from '../../components/Load';
 
@@ -10,6 +11,6 @@ export default function CustomerLoad() {
       button_context="가게 둘러보기"
       link="/stores"
       image={customerImage}
-    ></Load>
+    />
   );
 }

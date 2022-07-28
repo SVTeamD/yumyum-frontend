@@ -9,9 +9,14 @@ export default function MenuList() {
 
   const handleTotalBill = () => {
     let total = 0;
-    checked.forEach((index) => {
-      total += menusList[index].cost;
-    });
+    if (checked.length == 0) {
+      total = 0;
+    } else {
+      checked.forEach((index) => {
+        total += menusList[index].cost;
+      });
+    }
+
     setTotalBill(total);
   };
   const menusList = [
