@@ -33,13 +33,13 @@ export const JuCrop: React.FC = () => {
   };
   return (
     <div>
-      <div className="relative">
+      <div className=" flex justify-between">
         <label
-          className="flex flex-col items-center rounded text-base font-bold text-white text-center"
+          className="flex flex-col items-center rounded text-base font-bold text-white text-center px-11 py-1"
           htmlFor="input-file"
           style={{ backgroundColor: '#435ca5' }}
         >
-          업로드
+          사진 가져오기
         </label>
         <input
           type="file"
@@ -47,9 +47,20 @@ export const JuCrop: React.FC = () => {
           style={{ display: 'none' }}
           onChange={onChange}
         />
+        {/* <div className="box">
+          <h1> */}
+        <label
+          className="flex flex-col items-center rounded text-base font-bold text-white text-center px-11 py-1"
+          style={{ backgroundColor: '#435ca5' }}
+          onClick={getCropData}
+        >
+          이미지 자르기
+        </label>
+        {/* </h1>
+        </div> */}
       </div>
       <Cropper
-        style={{ width: '100%' }}
+        // style={{ objectFit: 'cover', height: '70%' }}
         zoomTo={0.5}
         initialAspectRatio={1}
         src={image}
@@ -65,8 +76,8 @@ export const JuCrop: React.FC = () => {
         }}
         guides={true}
       />
-      <div>
-        <div className="box" style={{ width: '100%', height: '300px' }}>
+      {/* <div>
+        <div className="box" style={{ height: '200px' }}>
           <h1>
             <label
               className="flex flex-col items-center rounded text-base font-bold text-white text-center"
@@ -76,10 +87,19 @@ export const JuCrop: React.FC = () => {
               이미지 자르기
             </label>
           </h1>
-          <img style={{ width: '100%' }} src={cropData} />
+          <img
+            // style={{ objectFit: 'cover', width: '100%', height: '50%' }}
+            style={{ objectFit: 'contain', width: '100%', height: '50%' }}
+            src={cropData}
+          />
         </div>
-      </div>
-      <br style={{ clear: 'both' }} />
+      </div> */}
+      {/* <br style={{ clear: 'both' }} /> */}
+      <img
+        // style={{ objectFit: 'cover', width: '100%', height: '50%' }}
+        style={{ objectFit: 'contain', width: '100%', height: '50%' }}
+        src={cropData}
+      />
     </div>
   );
 };

@@ -1,87 +1,96 @@
-// npm i react-image-crop --save
-// 터미널에 입력하고 실행하기
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import Logo from '../assets/Logo';
+import Grid from '@mui/material/Grid';
+import LinkButton from '../components/LinkButton';
 
-import React, { useState } from 'react';
-import Cropper from 'react-cropper';
-import 'cropperjs/dist/cropper.css';
+import customerImage from '../assets/images/customer.jpeg';
+import merchantImage from '../assets/images/merchant.jpeg';
+import UploadButtons from '../components/UploadButtons';
+import CategorySelect from '../components/CategorySelect';
+import JuCrop from '../components/JuCrop';
+import { fontSize } from '@mui/system';
+import { Typography } from '@mui/material';
+import home from '../assets/images/home.png';
+import { Height } from '@mui/icons-material';
 
-const defaultSrc = ' ';
+export default function Mode() {
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-export const Ju: React.FC = () => {
-  const [image, setImage] = useState(defaultSrc);
-  const [cropData, setCropData] = useState('#');
-  const [cropper, setCropper] = useState<any>();
-  const onChange = (e: any) => {
-    e.preventDefault();
-    let files;
-    if (e.dataTransfer) {
-      files = e.dataTransfer.files;
-    } else if (e.target) {
-      files = e.target.files;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      setImage(reader.result as any);
-    };
-    reader.readAsDataURL(files[0]);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAuth(event.target.checked);
   };
 
-  const getCropData = () => {
-    if (typeof cropper !== 'undefined') {
-      setCropData(cropper.getCroppedCanvas().toDataURL());
-    }
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
   };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div>
-      <div className="relative">
-        <label
-          className="flex flex-col items-center rounded text-base font-bold text-white text-center"
-          htmlFor="input-file"
-          style={{ backgroundColor: '#435ca5' }}
-        >
-          업로드
-        </label>
-        <input
-          type="file"
-          id="input-file"
-          style={{ display: 'none' }}
-          onChange={onChange}
-        />
-      </div>
-      <Cropper
-        style={{ width: '100%' }}
-        zoomTo={0.5}
-        initialAspectRatio={1}
-        src={image}
-        viewMode={1}
-        minCropBoxHeight={10}
-        minCropBoxWidth={10}
-        background={false}
-        responsive={true}
-        autoCropArea={1}
-        checkOrientation={false}
-        onInitialized={(instance) => {
-          setCropper(instance);
-        }}
-        guides={true}
-      />
-      <div>
-        <div className="box" style={{ width: '100%', height: '300px' }}>
-          <h1>
-            <label
-              className="flex flex-col items-center rounded text-base font-bold text-white text-center"
-              style={{ backgroundColor: '#435ca5' }}
-              onClick={getCropData}
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" style={{ background: '#fff2ea' }}>
+          <Toolbar
+            sx={{
+              justifyContent: 'space-between'
+            }}
+          >
+            <IconButton
+              size="large"
+              edge="start"
+              aria-label="menu"
+              sx={{
+                mr: 2
+              }}
             >
-              이미지 자르기
-            </label>
-          </h1>
-          <img style={{ width: '100%' }} src={cropData} />
-        </div>
+              <MenuIcon />
+            </IconButton>
+            <Logo />
+            {auth && (
+              <div>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                  }}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                ></Menu>
+              </div>
+            )}
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <div className="px-4">
+        <JuCrop />
       </div>
-      <br style={{ clear: 'both' }} />
     </div>
   );
-};
-
-export default Ju;
+}
