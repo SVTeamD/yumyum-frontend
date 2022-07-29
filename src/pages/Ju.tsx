@@ -16,6 +16,7 @@ import merchantImage from '../assets/images/merchant.jpeg';
 import UploadButtons from '../components/UploadButtons';
 import CategorySelect from '../components/CategorySelect';
 import JuCrop from '../components/JuCrop';
+import JuMenuCrop from '../components/JuMenuCrop';
 import { fontSize } from '@mui/system';
 import { Typography } from '@mui/material';
 import home from '../assets/images/home.png';
@@ -38,7 +39,7 @@ export default function Ju() {
   };
 
   return (
-    <div className="h-5/7 overflow-y-scroll">
+    <div className="h-5/6 overflow-y-scroll">
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" style={{ background: '#fff2ea' }}>
           <Toolbar
@@ -159,7 +160,7 @@ export default function Ju() {
         </div>
       </Box> */}
         <div className="px-4">
-          <JuCrop />
+          <JuMenuCrop />
         </div>
         <Box
           sx={{

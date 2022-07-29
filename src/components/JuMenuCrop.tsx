@@ -7,7 +7,7 @@ import 'cropperjs/dist/cropper.css';
 
 const defaultSrc = ' ';
 
-export const JuCrop: React.FC = () => {
+export const JuMenuCrop: React.FC = () => {
   const [image, setImage] = useState(defaultSrc);
   const [cropData, setCropData] = useState('#');
   const [cropper, setCropper] = useState<any>();
@@ -36,14 +36,14 @@ export const JuCrop: React.FC = () => {
       <div className=" flex justify-between">
         <label
           className="flex flex-col items-center rounded text-base font-bold text-white text-center px-11 py-1"
-          htmlFor="input-file"
+          htmlFor="input-menu"
           style={{ backgroundColor: '#79A7C8' }}
         >
           사진 가져오기
         </label>
         <input
           type="file"
-          id="input-file"
+          id="input-menu"
           style={{ display: 'none' }}
           onChange={onChange}
         />
@@ -104,4 +104,4 @@ export const JuCrop: React.FC = () => {
   );
 };
 
-export default JuCrop;
+export default JuMenuCrop;
