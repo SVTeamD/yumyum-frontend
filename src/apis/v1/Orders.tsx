@@ -41,11 +41,11 @@ export default class Users {
     });
   }
   //Create Order Info
-  static async createOrder(data: OrderCreateSchema): Promise<Order> {
-    const result = await axios.post(`${BASE_URL_DEV}/orders/`, data);
+  // static async createOrder(data: OrderCreateSchema): Promise<Order> {
+  //   const result = await axios.post(`${BASE_URL_DEV}/orders/`, data);
 
-    return result.data;
-  }
+  //   return result.data;
+  // }
   //Delete Delete order by Id
   static async deleteOrder(orderId: number) {
     const result = await axios.delete(`${BASE_URL_DEV}/orders/${orderId}/`);

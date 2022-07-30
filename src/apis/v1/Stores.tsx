@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { BASE_URL_DEV, BASE_URL_PROD } from '../configs/constants';
-import { Store, StoreSchema } from './schemas/Stores';
+import { Store, StoreCreateSchema, StoreSchema } from './schemas/Stores';
 import { Menu, MenuSchema } from './schemas/Menus';
 
 export default class Stores {
@@ -42,6 +42,13 @@ export default class Stores {
       }
     });
   }
+  //Create Store Info
+  // static async createStore(data: StoreCreateSchema): Promise<Store> {
+  //   const result = await axios.post(`${BASE_URL_DEV}/stores/`, data);
+
+  //   return result.data;
+  // }
+
   //Delete Store By Id
   static async deleteStore(storeId: number) {
     const result = await axios.delete(`${BASE_URL_DEV}/stores/${storeId}/`);

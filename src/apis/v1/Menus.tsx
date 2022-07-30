@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { BASE_URL_DEV, BASE_URL_PROD } from '../configs/constants';
-import { Menu, MenuSchema } from './schemas/Menus';
+import { Menu, MenuCreateSchema, MenuSchema } from './schemas/Menus';
 
 export default class Menus {
   //Get Read Main menu
@@ -52,6 +52,14 @@ export default class Menus {
       };
     });
   }
+
+  //Create Menu Info
+  // static async createMenu(data: MenuCreateSchema): Promise<Menu> {
+  //   const result = await axios.post(`${BASE_URL_DEV}/menus/`, data);
+
+  //   return result.data;
+  // }
+
   //Delete Delete Menu My Id
   static async deleteStore(menuId: number) {
     const result = await axios.delete(`${BASE_URL_DEV}/menus/${menuId}/`);
