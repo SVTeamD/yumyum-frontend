@@ -15,8 +15,8 @@ import customerImage from '../assets/images/customer.jpeg';
 import merchantImage from '../assets/images/merchant.jpeg';
 import UploadButtons from '../components/UploadButtons';
 import CategorySelect from '../components/CategorySelect';
-import JuCrop from '../components/JuCrop';
-import JuMenuCrop from '../components/JuMenuCrop';
+import ImageCrop from '../components/ImageCrop';
+import MenuImageCrop from '../components/MenuImageCrop';
 import { fontSize } from '@mui/system';
 import { Typography } from '@mui/material';
 import home from '../assets/images/home.png';
@@ -118,7 +118,7 @@ export default function Ju() {
         </div>
       </Box> */}
         <div className="px-4">
-          <JuCrop />
+          <ImageCrop />
         </div>
 
         <Box
@@ -160,7 +160,7 @@ export default function Ju() {
         </div>
       </Box> */}
         <div className="px-4">
-          <JuMenuCrop />
+          <MenuImageCrop />
         </div>
         <Box
           sx={{

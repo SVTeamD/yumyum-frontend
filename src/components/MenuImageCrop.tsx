@@ -7,7 +7,7 @@ import 'cropperjs/dist/cropper.css';
 
 const defaultSrc = ' ';
 
-export const JuMenuCrop: React.FC = () => {
+export const MenuImageCrop: React.FC = () => {
   const [image, setImage] = useState(defaultSrc);
   const [cropData, setCropData] = useState('#');
   const [cropper, setCropper] = useState<any>();
@@ -104,4 +104,4 @@ export const JuMenuCrop: React.FC = () => {
   );
 };
 
-export default JuMenuCrop;
+export default MenuImageCrop;
