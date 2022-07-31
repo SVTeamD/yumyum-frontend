@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import { useState } from 'react';
 import { Grid, Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import order from '../assets/images/order.jpeg';
 import Paper from '@mui/material/Paper';
+import Button from '../components/Button';
+import LinksButton from '../components/LinksButton';
+import OrderHistory from '../components/OrderHistory';
+// import constants from '../utils/constants';
 
 export default function OrderDetails() {
   const dummy = {};
+  const [orderHistory, setOrderHistory] = useState(false);
   return (
     <Grid container direction="column">
       <Box
@@ -40,18 +46,29 @@ export default function OrderDetails() {
         >
           주문해줘서 감사해유!
         </Typography>
-        <Typography
-          align="center"
-          sx={{
-            marginTop: '2rem',
-            marginBottom: '1rem',
-            color: '#2E2F2F',
-            fontSize: '1rem'
-          }}
-        >
-          주문상세
-        </Typography>
       </Box>
+      <div className="flex flex-col items-center">
+        <div className="pt-16">
+          <LinksButton
+            buttonName="메인화면"
+            height="h-14"
+            xPadding="px-32"
+            link="/customer"
+          />
+        </div>
+        <div className="pt-5">
+          <Button
+            buttonName="상세보기"
+            height="h-14"
+            onClick={() => setOrderHistory(true)}
+            xPadding="px-32"
+          />
+        </div>
+
+        {orderHistory && (
+          <OrderHistory onClose={() => setOrderHistory(false)} />
+        )}
+      </div>
     </Grid>
   );
 }
