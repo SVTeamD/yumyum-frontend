@@ -40,7 +40,7 @@ export default function CategorySelect() {
           onClose={handleClose}
           onOpen={handleOpen}
           value={category}
-          label="Category"
+          label="눌러서 장사명칭을 입력해봐유!"
           onChange={handleChange}
         >
           <MenuItem value="">
