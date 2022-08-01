@@ -8,6 +8,7 @@ import MerchantLoad from './pages/merchants/MerchantLoad';
 import CustomerMain from './pages/customers/CustomerMain';
 import CustomerOrder from './pages/customers/CustomerOrder';
 import OrderDetails from './pages/OrderDetails';
+import Ju from './pages/Ju';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/stores/new" element={<MakeStore />} />
           <Route path="/order/details/:id" element={<OrderDetails />} />
           <Route path="/oauth/kakao/callback" element={<Auth />} />
+          <Route path="/Ju" element={<Ju />} />
         </Routes>
       </BrowserRouter>
     </div>

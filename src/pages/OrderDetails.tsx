@@ -3,6 +3,10 @@ import { Grid, Box, Divider } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import orderImage from '../assets/images/order.jpeg';
 import Paper from '@mui/material/Paper';
+import Button from '../components/Button';
+import LinksButton from '../components/LinksButton';
+import OrderHistory from '../components/OrderHistory';
+// import constants from '../utils/constants';
 import Button from '@mui/material/Button';
 
 import Orders from '../apis/v1/Orders';
@@ -12,7 +16,7 @@ export default function OrderDetails() {
   const [userId, setUserId] = React.useState<number>();
   const [order, setOrder] = React.useState<Order>();
   const [show, setShow] = React.useState(false);
-
+  const [orderHistory, setOrderHistory] = React.useState(false);
   const fetchOrder = async () => {
     const data = await Orders.getOrder(Number(userId));
     setOrder(data);
@@ -98,6 +102,28 @@ export default function OrderDetails() {
           </Typography>
         </Paper>
       </Box>
+      <div className="flex flex-col items-center">
+        <div className="pt-16">
+          <LinksButton
+            buttonName="메인화면"
+            height="h-14"
+            xPadding="px-32"
+            link="/customer"
+          />
+        </div>
+        <div className="pt-5">
+          <Button
+            buttonName="상세보기"
+            height="h-14"
+            onClick={() => setOrderHistory(true)}
+            xPadding="px-32"
+          />
+        </div>
+
+        {orderHistory && (
+          <OrderHistory onClose={() => setOrderHistory(false)} />
+        )}
+      </div>
     </Grid>
   );
 }
