@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { useState } from 'react';
 import List from '@mui/material/List';
 import MenuItem from './MenuItem';
 import OrderDrawer from './OrderDrawer';
+import OrderService from '../services/OrderService';
+import { dts } from '../utils/types';
 
 export default function MenuList() {
   const [checked, setChecked] = React.useState([0]);
@@ -66,6 +69,24 @@ export default function MenuList() {
       image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
     }
   ];
+
+  // start
+  const [orderInfo, setOrderInfo] = useState<dts.orderDto>({
+    menu: { id: '', name: '', cost: '', image: '' },
+    quantity: 0
+  });
+  const sendorderInfo = (e: any) => {
+    e.preventDefault();
+    const data = {
+      id: orderInfo.menu.id,
+      name: orderInfo.menu.name,
+      cost: orderInfo.menu.cost,
+      iamge: orderInfo.menu.image,
+      quantity: orderInfo.quantity
+    };
+  };
+  // end
+
   return (
     <>
       <List
