@@ -47,24 +47,25 @@ export default function Mode() {
 
   const registerUser = async (isCustomer: boolean) => {
     getProfile();
-    const data = await Users.createUser({
+
+    const user = await Users.createUser({
       user_type: isCustomer,
       name: nickName,
       gender: gender,
       age_range: ageRange,
-      phone_num: '01066663333'
+      phone_num: '',
+      token: localStorage.getItem('bearer')
     });
-    console.log(data);
+    console.log(user);
+    localStorage.setItem('userId', String(user));
   };
 
   const getProfile = async () => {
     try {
-      // Kakao SDK API를 이용해 사용자 정보 획득
       const data = await window.Kakao.API.request({
         url: '/v2/user/me'
       });
 
-      // 사용자 정보 변수에 저장
       setUserId(data.id);
       setNickName(data.properties.nickname);
       setProfileImage(data.properties.profile_image);

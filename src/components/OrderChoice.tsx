@@ -1,13 +1,39 @@
+import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import TakeoutDiningIcon from '@mui/icons-material/TakeoutDining';
 import StoreMallDirectoryIcon from '@mui/icons-material/StoreMallDirectory';
 
+import Orders from '../apis/v1/Orders';
+
 interface Props {
   takeOut: boolean;
+  cost: number;
 }
 
-export default function OrderChoice({ takeOut }: Props) {
+export default function OrderChoice({ takeOut, cost }: Props) {
+  const [userId, setUserId] = React.useState<number>(0);
+  const [storeId, setStoreId] = React.useState(0);
+  const handleOrder = async () => {
+    const data = await Orders.createOrder({
+      user_id: userId,
+      store_id: storeId,
+      is_takeout: takeOut,
+      cost: cost
+    });
+    return data;
+  };
+
+  React.useEffect(() => {
+    setUserId(Number(localStorage.getItem('userId')));
+    setStoreId(
+      Number(
+        window.location.href.substring(
+          window.location.href.lastIndexOf('/') + 1
+        )
+      )
+    );
+  }, []);
   return (
     <div>
       <Grid
@@ -24,10 +50,11 @@ export default function OrderChoice({ takeOut }: Props) {
               <Button
                 onClick={() => {
                   takeOut = true;
+                  handleOrder();
                 }}
                 variant="contained"
                 color="success"
-                href="/order/details"
+                href={`/order/details/${userId}`}
                 startIcon={<TakeoutDiningIcon />}
                 sx={{
                   fontSize: '1rem',
@@ -44,10 +71,11 @@ export default function OrderChoice({ takeOut }: Props) {
               <Button
                 onClick={() => {
                   takeOut = false;
+                  handleOrder();
                 }}
                 variant="contained"
                 color="primary"
-                href="/order/details"
+                href={`/order/details/${userId}`}
                 startIcon={<StoreMallDirectoryIcon />}
                 sx={{
                   fontSize: '1rem',

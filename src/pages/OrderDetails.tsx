@@ -1,17 +1,36 @@
 import React, { Component } from 'react';
-import { useState } from 'react';
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, Divider } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import order from '../assets/images/order.jpeg';
+import orderImage from '../assets/images/order.jpeg';
 import Paper from '@mui/material/Paper';
 import Button from '../components/Button';
 import LinksButton from '../components/LinksButton';
 import OrderHistory from '../components/OrderHistory';
 // import constants from '../utils/constants';
+import Button from '@mui/material/Button';
+
+import Orders from '../apis/v1/Orders';
+import { Order } from '../apis/v1/schemas/Orders';
 
 export default function OrderDetails() {
-  const dummy = {};
-  const [orderHistory, setOrderHistory] = useState(false);
+  const [userId, setUserId] = React.useState<number>();
+  const [order, setOrder] = React.useState<Order>();
+  const [show, setShow] = React.useState(false);
+  const [orderHistory, setOrderHistory] = React.useState(false);
+  const fetchOrder = async () => {
+    const data = await Orders.getOrder(Number(userId));
+    setOrder(data);
+    return data;
+  };
+  React.useEffect(() => {
+    setUserId(
+      Number(
+        window.location.href.substring(
+          window.location.href.lastIndexOf('/') + 1
+        )
+      )
+    );
+  }, []);
   return (
     <Grid container direction="column">
       <Box
@@ -32,7 +51,7 @@ export default function OrderDetails() {
               alignItems: 'center'
             }}
             alt="Order Complete."
-            src={order}
+            src={orderImage}
           />
         </Paper>
         <Typography
@@ -46,6 +65,42 @@ export default function OrderDetails() {
         >
           주문해줘서 감사해유!
         </Typography>
+        <Paper sx={{ width: '100%' }}>
+          <Typography
+            align="center"
+            sx={{
+              marginTop: '1rem',
+              marginBottom: '1rem',
+              color: '#2E2F2F',
+              fontSize: '1.5rem',
+              fontFamily: 'Gungseo'
+            }}
+          >
+            <Button
+              sx={{
+                color: '#000',
+                fontSize: '1.5rem',
+                fontStyle: 'bold',
+                fontFamily: 'Gungseo',
+                borderRadius: '1rem'
+              }}
+              onClick={() => {
+                fetchOrder();
+                setShow((prev: any) => !prev);
+              }}
+            >
+              주문을 확인해보슈
+            </Button>
+            {show && (
+              <>
+                <br />
+                주문번호 {order?.id}번 <br />
+                합계 {order?.cost}원 <br />
+                {order?.is_takeout ? '나가드슈' : '먹고가슈'} <br />
+              </>
+            )}
+          </Typography>
+        </Paper>
       </Box>
       <div className="flex flex-col items-center">
         <div className="pt-16">
