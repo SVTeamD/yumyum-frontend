@@ -5,6 +5,7 @@ export interface User {
   gender: string;
   ageRange: string;
   phoneNumber: string;
+  token: string;
 }
 export interface UserSchema {
   id: number;
@@ -13,6 +14,7 @@ export interface UserSchema {
   gender: string;
   ageRange: string;
   phoneNumber: string;
+  token: string;
 }
 
 export interface UserCreateSchema {
@@ -21,4 +23,5 @@ export interface UserCreateSchema {
   gender: string | null;
   age_range: string | null;
   phone_num: string | null;
+  token: string | null;
 }

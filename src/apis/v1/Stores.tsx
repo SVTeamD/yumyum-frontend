@@ -7,21 +7,8 @@ export default class Stores {
   static async getStores(): Promise<StoreSchema[]> {
     const result = await axios.get(`${BASE_URL_DEV}/stores/`);
     return result.data.map((store: StoreSchema): StoreSchema => {
-      const { id, category, name, photo_url, points } = store;
-      return { id, category, name, photo_url, points };
+      const { id, category, name, photo_url, location } = store;
+      return { id, category, name, photo_url, location };
     });
   }
-
-  // static async createUser(data: UserCreateSchema): Promise<Store> {
-  //   console.log(data);
-  //   const result = await axios.post(`${BASE_URL_DEV}/users`, data);
-  //   console.log(result.data);
-  //   return result.data;
-  // }
-
-  // static async deleteUser(userId: number) {
-  //   const result = await axios.delete(`${BASE_URL_DEV}/users/${userId}/`);
-
-  //   return result.data;
-  // }
 }

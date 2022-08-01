@@ -18,7 +18,6 @@ export default function CustomerMain() {
     <div>Geolocation is not enabled</div>
   ) : coords ? (
     <>
-      {console.log(coords)}
       <MainAppBar />
       <MarketMap latitude={coords.latitude} longitude={coords.longitude} />
     </>

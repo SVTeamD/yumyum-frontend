@@ -13,7 +13,7 @@ export interface StoreSchema {
   category: string;
   name: string | undefined;
   photo_url: string;
-  points: [number, number];
+  location: [number, number];
 }
 
 export interface StoreCreateSchema {

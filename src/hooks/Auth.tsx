@@ -8,9 +8,7 @@ const Auth = () => {
   const REDIRECT_URI = 'http://localhost:3000/oauth/kakao/callback';
   const CLIENT_SECRET = '';
 
-  // calllback으로 받은 인가코드
   const code = new URL(window.location.href).searchParams.get('code');
-  console.log(code);
   const history = useNavigate();
 
   const getToken = async () => {
@@ -23,16 +21,11 @@ const Auth = () => {
     });
 
     try {
-      // access token 가져오기
       const res = await axios.post(
         'https://kauth.kakao.com/oauth/token',
         payload
       );
-
-      // Kakao Javascript SDK 초기화
       window.Kakao.init(REST_API_KEY);
-      // access token 설정
-      console.log(res.data.access_token);
       window.Kakao.Auth.setAccessToken(res.data.access_token);
       localStorage.setItem('bearer', res.data.access_token);
       localStorage.setItem('login', 'true');

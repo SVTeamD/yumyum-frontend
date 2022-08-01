@@ -207,7 +207,6 @@ export default function OrderDrawer(props: Props) {
                   color="error"
                   variant="contained"
                   onClick={handleClickOpen}
-                  // href={`/order/details/`}
                   sx={{
                     p: 1,
                     borderRadius: '1rem',
@@ -226,7 +225,7 @@ export default function OrderDrawer(props: Props) {
         </StyledBox>
       </SwipeableDrawer>
       <Dialog open={openDialog} onClose={handleClose}>
-        <OrderChoice takeOut={takeOut} />
+        <OrderChoice takeOut={takeOut} cost={totalBill} />
       </Dialog>
     </Root>
   );

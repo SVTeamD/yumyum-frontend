@@ -59,7 +59,7 @@ export default function MarketMap(props: Props) {
   const [toggleSelected, setToggleSelected] = React.useState<string[]>([]);
   const [positions, setPositions] = React.useState<StoreSchema[]>([]);
   const [stores, setStore] = React.useState<StoreSchema[]>([
-    { id: 0, name: '', category: '', photo_url: '', points: [0, 0] }
+    { id: 0, name: '', category: '', photo_url: '', location: [0, 0] }
   ]);
   const storeState: StoreSchema[] = [];
   const toggleDrawer = (newOpen: boolean, indexOf: number) => () => {
@@ -115,8 +115,8 @@ export default function MarketMap(props: Props) {
         {stores.map((store, index) => (
           <CustomOverlayMap
             position={{
-              lat: store.points[0],
-              lng: store.points[1]
+              lat: store.location[0],
+              lng: store.location[1]
             }}
             clickable={true}
           >
@@ -137,7 +137,6 @@ export default function MarketMap(props: Props) {
           </CustomOverlayMap>
         ))}
       </Map_>
-      {/* </div> */}
       <Root>
         <CssBaseline />
         <Global

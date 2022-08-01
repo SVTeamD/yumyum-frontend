@@ -36,19 +36,17 @@ export default function MainAppBar() {
 
   const handleLogout = () => {
     window.Kakao.Auth.logout(function () {
-      localStorage.setItem('login', 'false');
-      console.log(window.Kakao.Auth.getAccessToken());
+      setLogin(false);
     });
     window.location.reload();
   };
 
   const getProfile = async () => {
     try {
-      // Kakao SDK API를 이용해 사용자 정보 획득
       const data = await window.Kakao.API.request({
         url: '/v2/user/me'
       });
-      console.log(data.properties);
+      console.log('DATA' + data.properties);
 
       // 사용자 정보 변수에 저장
       setUserId(data.id);
@@ -63,8 +61,6 @@ export default function MainAppBar() {
   };
 
   React.useEffect(() => {
-    console.log(localStorage.getItem('bearer'));
-    setToken(localStorage.getItem('bearer'));
     getProfile();
   });
 
