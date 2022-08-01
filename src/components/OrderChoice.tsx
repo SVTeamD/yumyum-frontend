@@ -54,7 +54,7 @@ export default function OrderChoice({ takeOut, cost }: Props) {
                 }}
                 variant="contained"
                 color="success"
-                href="/order/details"
+                href={`/order/details/${userId}`}
                 startIcon={<TakeoutDiningIcon />}
                 sx={{
                   fontSize: '1rem',
@@ -75,7 +75,7 @@ export default function OrderChoice({ takeOut, cost }: Props) {
                 }}
                 variant="contained"
                 color="primary"
-                href="/order/details"
+                href={`/order/details/${userId}`}
                 startIcon={<StoreMallDirectoryIcon />}
                 sx={{
                   fontSize: '1rem',

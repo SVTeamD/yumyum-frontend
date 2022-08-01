@@ -8,4 +8,9 @@ export default class Orders {
     const result = await axios.post(`${BASE_URL_DEV}/orders`, data);
     return result.data;
   }
+
+  static async getOrder(userId: number | null): Promise<Order> {
+    const result = await axios.get(`${BASE_URL_DEV}/orders/${userId}`);
+    return result.data;
+  }
 }

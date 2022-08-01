@@ -2,7 +2,7 @@ export interface Order {
   id: number;
   user_id: number;
   store_id: number;
-  datetime: string;
+  created_at: string;
   is_takeout: boolean;
   cost: number;
   is_active: boolean;
