@@ -3,11 +3,11 @@ import { Grid, Box, Divider } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import orderImage from '../assets/images/order.jpeg';
 import Paper from '@mui/material/Paper';
-import Button from '../components/Button';
+import Button from '@mui/material/Button';
+import ButtonM from '../components/Button';
 import LinksButton from '../components/LinksButton';
 import OrderHistory from '../components/OrderHistory';
 // import constants from '../utils/constants';
-import Button from '@mui/material/Button';
 
 import Orders from '../apis/v1/Orders';
 import { Order } from '../apis/v1/schemas/Orders';
@@ -112,7 +112,7 @@ export default function OrderDetails() {
           />
         </div>
         <div className="pt-5">
-          <Button
+          <ButtonM
             buttonName="상세보기"
             height="h-14"
             onClick={() => setOrderHistory(true)}
