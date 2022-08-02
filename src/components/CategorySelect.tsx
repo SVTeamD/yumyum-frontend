@@ -5,12 +5,16 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Button from '@mui/material/Button';
 
-export default function CategorySelect() {
-  const [category, setCategory] = React.useState<string | number>('');
+interface Props {
+  category: string;
+  setCategory: (category: string) => void;
+}
+
+export default function CategorySelect(props: Props) {
   const [open, setOpen] = React.useState(false);
 
-  const handleChange = (event: SelectChangeEvent<typeof category>) => {
-    setCategory(event.target.value);
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    props.setCategory(event.target.value);
   };
 
   const handleClose = () => {
@@ -27,11 +31,11 @@ export default function CategorySelect() {
         sx={{ display: 'block', mt: 2, fontSize: 25, color: 'black' }}
         onClick={handleOpen}
       >
-        "무슨 장사해유?"
+        무슨 장사하세요?
       </Button>
       <FormControl sx={{ m: 1, minWidth: 350 }}>
         <InputLabel id="demo-controlled-open-select-label">
-          눌러서 장사명칭을 입력해봐유!
+          눌러서 장사명칭을 입력해보세요!
         </InputLabel>
         <Select
           labelId="demo-controlled-open-select-label"
@@ -39,7 +43,7 @@ export default function CategorySelect() {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={category}
+          value={props.category}
           label="눌러서 장사명칭을 입력해봐유!"
           onChange={handleChange}
         >
