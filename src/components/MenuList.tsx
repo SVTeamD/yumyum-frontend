@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import List from '@mui/material/List';
 import MenuItem from './MenuItem';
 import OrderDrawer from './OrderDrawer';
@@ -9,6 +10,61 @@ import { dts } from '../utils/types';
 export default function MenuList() {
   const [checked, setChecked] = React.useState([0]);
   const [totalBill, setTotalBill] = React.useState(0);
+
+  // start
+  const [menuInfo, setMenuInfo] = useState<dts.menuDto>({
+    id: '',
+    name: '',
+    cost: 0,
+    image: ''
+  });
+  const [keywords, setKeywords] = useState('');
+
+  const onChange = (e: any) => {
+    setKeywords(e.target.value);
+  };
+
+  const handleKeyword = (text: any) => {
+    console.log('text', text);
+
+    // 메뉴 목록 조회
+
+    axios.get('{ API_URL }/menu').then((response) => {
+      setMenuInfo(response.data);
+    });
+  };
+
+  // 메뉴 추가
+
+  useEffect(() => {
+    axios.post('{ API_URL }/menu/{menu_id}', {
+      categoryName: keywords
+    });
+  }, []);
+
+  // 메뉴 수정
+
+  useEffect(() => {
+    axios
+      .put('{ API_URL }/menu/{menu_id}', {
+        categoryName: keywords
+      })
+      .then((response) => {
+        setMenuInfo(response.data);
+      });
+  }, []);
+
+  // 메뉴 삭제
+
+  useEffect(() => {
+    axios.delete('{ API_URL }/menu', {
+      data: {
+        categoryName: keywords
+      }
+    });
+  }, []);
+
+  // end
 
   const handleTotalBill = () => {
     let total = 0;
@@ -72,7 +128,7 @@ export default function MenuList() {
 
   // start
   const [orderInfo, setOrderInfo] = useState<dts.orderDto>({
-    menu: { id: '', name: '', cost: '', image: '' },
+    menu: { id: '', name: '', cost: 0, image: '' },
     quantity: 0
   });
   const sendorderInfo = (e: any) => {

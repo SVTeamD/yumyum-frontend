@@ -3,7 +3,7 @@ export namespace dts {
   export interface menuDto {
     id: string;
     name: string;
-    cost: string;
+    cost: number;
     image: string;
   }
 

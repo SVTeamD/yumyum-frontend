@@ -62,7 +62,7 @@ const constants = {
         menu: {
           id: '1',
           name: '짜장면',
-          cost: '5,000',
+          cost: 5000,
           image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
         },
         quantity: 1
@@ -71,7 +71,7 @@ const constants = {
         menu: {
           id: '2',
           name: '짬뽕',
-          cost: '6,000',
+          cost: 6000,
           image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
         },
         quantity: 4
@@ -80,7 +80,7 @@ const constants = {
         menu: {
           id: '3',
           name: '볶음밥',
-          cost: '5,500',
+          cost: 5500,
           image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
         },
         quantity: 3
