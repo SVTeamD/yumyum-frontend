@@ -23,3 +23,7 @@ export interface StoreCreateSchema {
   description: string;
   photo_url: string;
 }
+
+export interface SingleStoreSchema { //get
+  user_id: number;
+}
