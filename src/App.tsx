@@ -21,6 +21,7 @@ export default function App() {
           <Route path="/stores" element={<CustomerMain />} />
           <Route path="/stores/details/:id" element={<CustomerOrder />} />
           <Route path="/stores/register" element={<MerchantRegister />} />
+          <Route path="/stores/details" element={<CustomerOrder />} />
           <Route path="/order/details/:id" element={<OrderDetails />} />
           <Route path="/oauth/kakao/callback" element={<Auth />} />
         </Routes>

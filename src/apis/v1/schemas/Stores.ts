@@ -22,3 +22,7 @@ export interface StoreCreateSchema {
   description: string;
   location: [number | undefined, number | undefined];
 }
+
+export interface SingleStoreSchema { //get
+  user_id: number;
+}

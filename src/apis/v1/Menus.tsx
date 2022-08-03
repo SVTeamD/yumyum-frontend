@@ -27,4 +27,14 @@ export default class Menus {
     });
     return result.data;
   }
+
+  static async getMenus(menuId: number | null): Promise<Menu> {
+    const result = await axios.get(`${BASE_URL_DEV}/menus/${menuId}`);
+    return result.data;
+  }
+
+  static async getMenu(menuName: string | null): Promise<Menu> {
+    const result = await axios.get(`${BASE_URL_DEV}/menus/${menuName}`);
+    return result.data;
+  }
 }
