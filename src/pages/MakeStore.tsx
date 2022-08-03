@@ -14,6 +14,8 @@ import { fontSize } from '@mui/system';
 import { Typography } from '@mui/material';
 import home from '../assets/images/home.png';
 import ImageUpload from '../components/ImageUpload';
+import ImageCrop from '../components/ImageCrop';
+import MenuImageCrop from '../components/MenuImageCrop';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import Dialog from '@mui/material/Dialog';
@@ -110,7 +112,7 @@ export default function Mode() {
         >
           <div>가게 이름이 뭐라구유?</div>
         </Box>
-        <Box
+        {/* <Box
           sx={{
             marginTop: '0.5rem',
             display: 'flex',
@@ -119,7 +121,10 @@ export default function Mode() {
           }}
         >
           <ImageUpload></ImageUpload>
-        </Box>
+        </Box> */}
+        <div className="px-4">
+          <ImageCrop />
+        </div>
 
         <Box
           sx={{
@@ -142,7 +147,7 @@ export default function Mode() {
         >
           <div>차림표 추가해봐유!</div>
         </Box>
-        <Box
+        {/* <Box
           sx={{
             marginTop: '0.5rem',
             display: 'flex',
@@ -151,7 +156,10 @@ export default function Mode() {
           }}
         >
           <MenuUpload></MenuUpload>
-        </Box>
+        </Box> */}
+        <div className="px-4">
+          <MenuImageCrop />
+        </div>
         <Box
           sx={{
             marginTop: '0.5rem',
