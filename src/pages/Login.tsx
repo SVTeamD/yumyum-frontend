@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Grid, Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-import Logo from '../assets/Logo';
 import logo from '../assets/images/logo.png';
 
 export default function Login() {

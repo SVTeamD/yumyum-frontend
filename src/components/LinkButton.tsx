@@ -9,11 +9,19 @@ interface Props {
   name: string;
   link: string;
   image: string;
+  action: (is: boolean) => void;
+  isCustomer: boolean;
 }
 
-export default function LinkButton({ link, name, image }: Props) {
+export default function LinkButton({
+  link,
+  name,
+  image,
+  action,
+  isCustomer
+}: Props) {
   return (
-    <Link to={link}>
+    <Link to={link} onClick={() => action(isCustomer)}>
       <Box
         sx={{
           width: getWindowDimensions().width * 0.38,

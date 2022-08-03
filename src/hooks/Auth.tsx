@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import qs from 'qs';
@@ -9,9 +8,7 @@ const Auth = () => {
   const REDIRECT_URI = 'http://localhost:3000/oauth/kakao/callback';
   const CLIENT_SECRET = '';
 
-  // calllback으로 받은 인가코드
   const code = new URL(window.location.href).searchParams.get('code');
-
   const history = useNavigate();
 
   const getToken = async () => {
@@ -24,17 +21,15 @@ const Auth = () => {
     });
 
     try {
-      // access token 가져오기
       const res = await axios.post(
         'https://kauth.kakao.com/oauth/token',
         payload
       );
-
-      // Kakao Javascript SDK 초기화
       window.Kakao.init(REST_API_KEY);
-      // access token 설정
       window.Kakao.Auth.setAccessToken(res.data.access_token);
-      history('/profile');
+      localStorage.setItem('bearer', res.data.access_token);
+      localStorage.setItem('login', 'true');
+      history('/');
     } catch (err) {
       console.log(err);
     }

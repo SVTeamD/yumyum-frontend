@@ -7,13 +7,22 @@ import getWindowDimensions from '../hooks/WindowSize';
 import home from '../assets/images/home.png';
 
 interface Props {
+  context_new: string;
+  context_line: string;
   context: string;
   button_context: string;
   link: string;
   image: string;
 }
 
-export default function Load({ context, button_context, link, image }: Props) {
+export default function Load({
+  context_new,
+  context_line,
+  context,
+  button_context,
+  link,
+  image
+}: Props) {
   return (
     <Grid
       sx={{
@@ -67,6 +76,10 @@ export default function Load({ context, button_context, link, image }: Props) {
               textAlign: 'left'
             }}
           >
+            {context_new}
+            <br />
+            {context_line}
+            <br />
             {context}
           </Typography>
         </Box>
