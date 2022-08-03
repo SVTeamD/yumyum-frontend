@@ -1,10 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace dts {
   export interface menuDto {
-    id: string;
     name: string;
     cost: number;
-    image: string;
+    photo_url: string;
+    is_active: boolean;
+    is_main_menu: boolean;
   }
 
   export interface orderDto {

@@ -9,7 +9,7 @@ interface Props {
   link: string;
 }
 
-export default function BasicButton({
+export default function LinksButton({
   buttonName,
   xPadding = 'px-10',
   height = 'h-14',

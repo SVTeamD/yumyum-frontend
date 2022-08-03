@@ -12,59 +12,30 @@ export default function MenuList() {
   const [totalBill, setTotalBill] = React.useState(0);
 
   // start
-  const [menuInfo, setMenuInfo] = useState<dts.menuDto>({
-    id: '',
-    name: '',
-    cost: 0,
-    image: ''
-  });
-  const [keywords, setKeywords] = useState('');
+  const [menuInfo, setMenuInfo] = useState<dts.menuDto[]>([
+    { name: '', cost: 0, photo_url: '', is_active: true, is_main_menu: true }
+  ]);
+  const store_id = 1;
+  //   [{
+  //     "name": 'string'
+  //     "cost": "string"
+  //     "photo_url": "string"
+  //     "is_active": true
+  //     "is_main_menu": true}
+  // ]
 
-  const onChange = (e: any) => {
-    setKeywords(e.target.value);
-  };
+  // const handleKeyword = (text: any) => {
+  //   console.log('text', text);
 
-  const handleKeyword = (text: any) => {
-    console.log('text', text);
-
-    // 메뉴 목록 조회
-
-    axios.get('{ API_URL }/menu').then((response) => {
-      setMenuInfo(response.data);
-    });
-  };
-
-  // 메뉴 추가
-
-  useEffect(() => {
-    axios.post('{ API_URL }/menu/{menu_id}', {
-      categoryName: keywords
-    });
-  }, []);
-
-  // 메뉴 수정
-
+  // 메뉴 목록 조회
   useEffect(() => {
     axios
-      .put('{ API_URL }/menu/{menu_id}', {
-        categoryName: keywords
-      })
+      .get(`http://localhost:8080/api/stores/${store_id}/menus`)
       .then((response) => {
         setMenuInfo(response.data);
       });
   }, []);
-
-  // 메뉴 삭제
-
-  useEffect(() => {
-    axios.delete('{ API_URL }/menu', {
-      data: {
-        categoryName: keywords
-      }
-    });
-  }, []);
-
-  // end
+  // // end
 
   const handleTotalBill = () => {
     let total = 0;
@@ -72,7 +43,7 @@ export default function MenuList() {
       total = 0;
     } else {
       checked.forEach((index) => {
-        total += menusList[index].cost;
+        total += menuInfo[index].cost;
       });
     }
 
@@ -80,68 +51,68 @@ export default function MenuList() {
   };
   const menusList = [
     {
-      title: '전어구이',
+      name: '전어구이',
       cost: 10000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
+      photo_url: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
     },
     {
-      title: '연어회',
+      name: '연어회',
       cost: 30000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
+      photo_url: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
     },
     {
-      title: '갈치조림',
+      name: '갈치조림',
       cost: 10000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '전어회',
-      cost: 20000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '한국음식',
-      cost: 40000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '한국음식',
-      cost: 40000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '한국음식',
-      cost: 40000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '한국음식',
-      cost: 40000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '한국음식',
-      cost: 40000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
+      photo_url: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
     }
+    // {
+    //   title: '전어회',
+    //   cost: 20000,
+    //   image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
+    // },
+    // {
+    //   title: '한국음식',
+    //   cost: 40000,
+    //   image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
+    // },
+    // {
+    //   title: '한국음식',
+    //   cost: 40000,
+    //   image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
+    // },
+    // {
+    //   title: '한국음식',
+    //   cost: 40000,
+    //   image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
+    // },
+    // {
+    //   title: '한국음식',
+    //   cost: 40000,
+    //   image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
+    // },
+    // {
+    //   title: '한국음식',
+    //   cost: 40000,
+    //   image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
+    // }
   ];
 
-  // start
-  const [orderInfo, setOrderInfo] = useState<dts.orderDto>({
-    menu: { id: '', name: '', cost: 0, image: '' },
-    quantity: 0
-  });
-  const sendorderInfo = (e: any) => {
-    e.preventDefault();
-    const data = {
-      id: orderInfo.menu.id,
-      name: orderInfo.menu.name,
-      cost: orderInfo.menu.cost,
-      iamge: orderInfo.menu.image,
-      quantity: orderInfo.quantity
-    };
-  };
-  // end
+  // // start
+  // const [orderInfo, setOrderInfo] = useState<dts.orderDto>({
+  //   menu: { id: '', name: '', cost: 0, image: '' },
+  //   quantity: 0
+  // });
+  // const sendorderInfo = (e: any) => {
+  //   e.preventDefault();
+  //   const data = {
+  //     id: orderInfo.menu.id,
+  //     name: orderInfo.menu.name,
+  //     cost: orderInfo.menu.cost,
+  //     iamge: orderInfo.menu.image,
+  //     quantity: orderInfo.quantity
+  //   };
+  // };
+  // // end
 
   return (
     <>
@@ -154,7 +125,7 @@ export default function MenuList() {
           justifyContent: 'space-between'
         }}
       >
-        {menusList.map((menu, index) => (
+        {menuInfo.map((menu, index) => (
           <MenuItem
             menus={menu}
             index={index}
@@ -165,7 +136,7 @@ export default function MenuList() {
       </List>
 
       <OrderDrawer
-        menus={menusList}
+        menus={menuInfo}
         checked={checked}
         bill={totalBill}
         handleTotalBill={handleTotalBill}
