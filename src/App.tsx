@@ -20,7 +20,7 @@ export default function App() {
           <Route path="/customer" element={<CustomerLoad />} />
           <Route path="/merchant" element={<MerchantLoad />} />
           <Route path="/stores" element={<CustomerMain />} />
-          <Route path="/stores/details/:id" element={<CustomerOrder />} />
+          <Route path="/stores/details" element={<CustomerOrder />} />
           <Route path="/merchant/register" element={<MakeStore />} />
           <Route path="/stores/new" element={<MakeStore />} />
           <Route path="/order/details/:id" element={<OrderDetails />} />

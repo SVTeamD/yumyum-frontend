@@ -10,22 +10,11 @@ import { dts } from '../utils/types';
 export default function MenuList() {
   const [checked, setChecked] = React.useState([0]);
   const [totalBill, setTotalBill] = React.useState(0);
-
-  // start
   const [menuInfo, setMenuInfo] = useState<dts.menuDto[]>([
     { name: '', cost: 0, photo_url: '', is_active: true, is_main_menu: true }
   ]);
-  const store_id = 1;
-  //   [{
-  //     "name": 'string'
-  //     "cost": "string"
-  //     "photo_url": "string"
-  //     "is_active": true
-  //     "is_main_menu": true}
-  // ]
 
-  // const handleKeyword = (text: any) => {
-  //   console.log('text', text);
+  const store_id = 1;
 
   // 메뉴 목록 조회
   useEffect(() => {
@@ -35,7 +24,6 @@ export default function MenuList() {
         setMenuInfo(response.data);
       });
   }, []);
-  // // end
 
   const handleTotalBill = () => {
     let total = 0;
@@ -49,70 +37,6 @@ export default function MenuList() {
 
     setTotalBill(total);
   };
-  const menusList = [
-    {
-      name: '전어구이',
-      cost: 10000,
-      photo_url: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      name: '연어회',
-      cost: 30000,
-      photo_url: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      name: '갈치조림',
-      cost: 10000,
-      photo_url: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    }
-    // {
-    //   title: '전어회',
-    //   cost: 20000,
-    //   image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    // },
-    // {
-    //   title: '한국음식',
-    //   cost: 40000,
-    //   image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    // },
-    // {
-    //   title: '한국음식',
-    //   cost: 40000,
-    //   image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    // },
-    // {
-    //   title: '한국음식',
-    //   cost: 40000,
-    //   image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    // },
-    // {
-    //   title: '한국음식',
-    //   cost: 40000,
-    //   image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    // },
-    // {
-    //   title: '한국음식',
-    //   cost: 40000,
-    //   image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    // }
-  ];
-
-  // // start
-  // const [orderInfo, setOrderInfo] = useState<dts.orderDto>({
-  //   menu: { id: '', name: '', cost: 0, image: '' },
-  //   quantity: 0
-  // });
-  // const sendorderInfo = (e: any) => {
-  //   e.preventDefault();
-  //   const data = {
-  //     id: orderInfo.menu.id,
-  //     name: orderInfo.menu.name,
-  //     cost: orderInfo.menu.cost,
-  //     iamge: orderInfo.menu.image,
-  //     quantity: orderInfo.quantity
-  //   };
-  // };
-  // // end
 
   return (
     <>

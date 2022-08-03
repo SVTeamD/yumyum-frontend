@@ -7,8 +7,6 @@ import order from '../assets/images/order.jpeg';
 import Paper from '@mui/material/Paper';
 import Button from '../components/Button';
 import LinksButton from '../components/LinksButton';
-// import OrderHistory from '../components/OrderHistory';
-import constants from '../utils/constants';
 
 export default function OrderDetails() {
   const dummy = {};
@@ -101,13 +99,6 @@ export default function OrderDetails() {
             xPadding="px-32"
           />
         </div>
-
-        {/* {orderHistory && (
-          <OrderHistory
-            onClose={() => setOrderHistory(false)}
-            orderList={constants.ORDER}
-          />
-        )} */}
       </div>
     </Grid>
   );
