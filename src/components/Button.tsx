@@ -9,7 +9,7 @@ interface Props {
   color?: string;
 }
 
-export default function Button({
+export default function ButtonM({
   buttonName,
   onClick,
   xPadding = 'px-12',

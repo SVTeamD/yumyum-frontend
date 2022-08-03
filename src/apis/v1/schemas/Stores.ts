@@ -19,9 +19,8 @@ export interface StoreSchema {
 export interface StoreCreateSchema {
   user_id: number;
   category: string;
-  name: string;
   description: string;
-  photo_url: string;
+  location: [number | undefined, number | undefined];
 }
 
 export interface SingleStoreSchema { //get

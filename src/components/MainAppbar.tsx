@@ -62,7 +62,7 @@ export default function MainAppBar() {
 
   React.useEffect(() => {
     getProfile();
-  });
+  }, []);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

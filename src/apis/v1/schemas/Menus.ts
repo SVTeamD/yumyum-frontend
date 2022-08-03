@@ -1,21 +1,19 @@
 export interface Menu {
   id: number;
   name: string;
-  cost: string;
+  cost: number;
   photo_url: string;
-  is_active: true;
-  is_main_menu: true;
+  is_main_menu: boolean;
+  is_active: boolean;
 }
+
 export interface MenuSchema {
+  user_id: number;
   store_id: number;
-  name: string;
-  cost: string;
-  photo_url: string;
+  is_takeout: boolean;
+  cost: number;
 }
 
 export interface MenuCreateSchema {
-  store_id: number;
-  name: string;
-  cost: string;
-  photo_url: string;
+  user_id: number;
 }

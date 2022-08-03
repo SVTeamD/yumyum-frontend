@@ -56,8 +56,7 @@ export default function Mode() {
       phone_num: '',
       token: localStorage.getItem('bearer')
     });
-    console.log(user);
-    localStorage.setItem('userId', String(user));
+    localStorage.setItem('userId', String(user.id));
   };
 
   const getProfile = async () => {
