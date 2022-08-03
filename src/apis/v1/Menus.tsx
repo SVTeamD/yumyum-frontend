@@ -21,7 +21,6 @@ export default class Menus {
     const image_ = await urlToObject(image);
     formData.append('data', form);
     formData.append('menu_image', image_);
-    console.log(image_);
     const result = await axios.post(`${BASE_URL_DEV}/menus`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });

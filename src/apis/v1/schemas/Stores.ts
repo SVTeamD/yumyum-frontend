@@ -22,3 +22,10 @@ export interface StoreCreateSchema {
   description: string;
   location: [number | undefined, number | undefined];
 }
+
+export interface StoreSingleSchema {
+  id: number;
+  name: string;
+  category: string;
+  photo_url: string;
+}

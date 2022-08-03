@@ -1,7 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import { BASE_URL_DEV, BASE_URL_PROD } from '../configs/constants';
-import { Store, StoreSchema, StoreCreateSchema } from './schemas/Stores';
+import {
+  Store,
+  StoreSchema,
+  StoreCreateSchema,
+  StoreSingleSchema
+} from './schemas/Stores';
+import { StoreMenu } from './schemas/Menus';
 
 export default class Stores {
   static async createStore(
@@ -37,5 +43,15 @@ export default class Stores {
       const { id, category, name, photo_url, location } = store;
       return { id, category, name, photo_url, location };
     });
+  }
+
+  static async getStoreMenu(storeId: number): Promise<StoreMenu[]> {
+    const result = await axios.get(`${BASE_URL_DEV}/stores/${storeId}/menus`);
+    return result.data;
+  }
+
+  static async getStore(storeId: number): Promise<StoreSingleSchema> {
+    const result = await axios.get(`${BASE_URL_DEV}/stores/${storeId}`);
+    return result.data;
   }
 }

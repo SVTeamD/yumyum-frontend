@@ -17,3 +17,11 @@ export interface MenuSchema {
 export interface MenuCreateSchema {
   user_id: number;
 }
+
+export interface StoreMenu {
+  name: string;
+  cost: number;
+  photo_url: string;
+  is_main_menu: boolean;
+  is_active: boolean;
+}

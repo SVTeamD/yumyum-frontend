@@ -21,9 +21,9 @@ const Img = styled('img')({
 
 interface Props {
   menus: {
-    title: string;
+    name: string;
     cost: number;
-    image: string;
+    photo_url: string;
   };
   index: number;
   checked: number[];
@@ -65,7 +65,7 @@ export default function MenuItem({ menus, index, setChecked, checked }: Props) {
                     variant="h6"
                     color="text.primary"
                   >
-                    {menus.title}
+                    {menus.name}
                   </Typography>
                 </React.Fragment>
               }
@@ -87,7 +87,7 @@ export default function MenuItem({ menus, index, setChecked, checked }: Props) {
             <Box sx={{ width: '12rem', height: '100%' }}>
               <Img
                 alt="complex"
-                src={menus.image}
+                src={'https://picsum.photos/200/100'}
                 sx={{
                   borderStartEndRadius: '1rem',
                   border: 'solid 1px #d3d3d3'

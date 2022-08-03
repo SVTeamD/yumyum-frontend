@@ -4,23 +4,27 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-import fishhouse from '../assets/images/fishhouse.jpeg';
-
+import { IMAGE_URI } from '../apis/configs/constants';
 interface Props {
   stores: {
+    id: number;
+    category: string;
     name: string;
-    images: string;
+    photo_url: string;
   };
 }
 
 export default function StoreDetails({ stores }: Props) {
+  React.useEffect(() => {
+    console.log(`${IMAGE_URI}/${stores.id}/store/${stores.photo_url}`);
+  }, []);
   return (
     <Card sx={{ maxWidth: '100%' }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="180"
-          image={fishhouse}
+          image={`${IMAGE_URI}/${stores.id}/store/${stores.photo_url}`}
           alt="store picture"
         />
         <CardContent>
@@ -28,15 +32,10 @@ export default function StoreDetails({ stores }: Props) {
             {stores.name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            바다 향기가 솔솔나는 오션's 횟집, 땅 고기도 팔아요.
+            {stores.category}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
     </Card>
   );
 }

@@ -17,10 +17,13 @@ const drawerBleeding = 65;
 interface Props {
   window?: () => Window;
   checked: number[];
+  menuLength: number;
   menus: {
-    title: string;
+    name: string;
     cost: number;
-    image: string;
+    photo_url: string;
+    is_main_menu: boolean;
+    is_active: boolean;
   }[];
   bill: number;
   handleTotalBill: () => void;
@@ -56,10 +59,10 @@ const Puller = styled(Box)(({ theme }) => ({
 }));
 
 export default function OrderDrawer(props: Props) {
-  const { window, menus, checked, bill, handleTotalBill } = props;
+  const { window, menus, checked, menuLength, handleTotalBill } = props;
   const [open, setOpen] = React.useState(false);
   // eslint-disable-next-line prefer-const
-  let [count, setCount] = React.useState(Array(menus.length).fill(0));
+  let [count, setCount] = React.useState(Array<number>(100).fill(0));
   // eslint-disable-next-line prefer-const
   let [totalBill, setTotalBill] = React.useState(0);
   const [openDialog, setOpenDialog] = React.useState(false);
@@ -101,9 +104,11 @@ export default function OrderDrawer(props: Props) {
     setTotalBill(totalBill);
   }
 
-  React.useEffect(() => {
-    console.log(totalBill);
-  }, [totalBill]);
+  // React.useEffect(() => {
+  //   console.log(menus.length);
+  //   setCount(Array<number>(menus.length).fill(0));
+  //   console.log(count);
+  // });
   return (
     <Root>
       <CssBaseline />
@@ -172,7 +177,7 @@ export default function OrderDrawer(props: Props) {
               {checked.map((value, index) => (
                 <Box>
                   <Item>
-                    {menus[value].title}
+                    {menus[value].name}
                     <br />
                     {menus[value].cost * count[value]}원
                     <Button onClick={() => decrementCount(value)}>-</Button>

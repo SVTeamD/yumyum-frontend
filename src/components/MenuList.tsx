@@ -2,10 +2,15 @@ import * as React from 'react';
 import List from '@mui/material/List';
 import MenuItem from './MenuItem';
 import OrderDrawer from './OrderDrawer';
+import Stores from '../apis/v1/Stores';
+import { StoreMenu } from '../apis/v1/schemas/Menus';
 
 export default function MenuList() {
   const [checked, setChecked] = React.useState([0]);
   const [totalBill, setTotalBill] = React.useState(0);
+  const [menusList, setMenusList] = React.useState<StoreMenu[]>([
+    { name: '', cost: 0, photo_url: '', is_active: true, is_main_menu: false }
+  ]);
 
   const handleTotalBill = () => {
     let total = 0;
@@ -19,53 +24,22 @@ export default function MenuList() {
 
     setTotalBill(total);
   };
-  const menusList = [
-    {
-      title: '전어구이',
-      cost: 10000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '연어회',
-      cost: 30000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '갈치조림',
-      cost: 10000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '전어회',
-      cost: 20000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '한국음식',
-      cost: 40000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '한국음식',
-      cost: 40000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '한국음식',
-      cost: 40000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '한국음식',
-      cost: 40000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
-    },
-    {
-      title: '한국음식',
-      cost: 40000,
-      image: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c'
+  React.useEffect(() => {
+    async function fetchData() {
+      const data = await Stores.getStoreMenu(
+        Number(
+          window.location.href.substring(
+            window.location.href.lastIndexOf('/') + 1
+          )
+        )
+      );
+      console.log(data);
+      setMenusList(data);
     }
-  ];
+    fetchData();
+    console.log(menusList);
+  }, []);
+
   return (
     <>
       <List
@@ -90,6 +64,7 @@ export default function MenuList() {
       <OrderDrawer
         menus={menusList}
         checked={checked}
+        menuLength={menusList.length}
         bill={totalBill}
         handleTotalBill={handleTotalBill}
       />
