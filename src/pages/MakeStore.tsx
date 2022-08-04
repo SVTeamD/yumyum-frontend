@@ -22,6 +22,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import MenuUpload from '../components/MenuUpload';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 export default function Mode() {
   const [auth, setAuth] = React.useState(true);
@@ -50,7 +51,7 @@ export default function Mode() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" style={{ background: '#fff2ea' }}>
+        <AppBar position="static" style={{ background: '#FFFFFF' }}>
           <Toolbar
             sx={{
               justifyContent: 'space-between'
@@ -210,10 +211,12 @@ export default function Mode() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClickClose}>다시확인</Button>
-          <Button onClick={handleClickClose} autoFocus>
-            등록하기
-          </Button>
+          <Button onClick={handleClickClose}>취소하기</Button>
+          <Link to="/merchants/main">
+            <Button onClick={handleClickClose} autoFocus>
+              등록하기
+            </Button>
+          </Link>
         </DialogActions>
       </Dialog>
     </>
