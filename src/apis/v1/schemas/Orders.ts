@@ -2,10 +2,10 @@ export interface Order {
   id: number;
   user_id: number;
   store_id: number;
-  created_at: string;
   is_takeout: boolean;
   cost: number;
   is_active: boolean;
+  created_at: string;
 }
 
 export interface OrderSchema {

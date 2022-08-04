@@ -8,7 +8,7 @@ export default function MerchantLoad() {
       context_line="가게 등록을 안했슈?"
       context="어서 해봐유!"
       button_context="가게 등록하기"
-      link="/stores/new"
+      link="/stores/register"
       image={merchantImage}
     ></Load>
   );

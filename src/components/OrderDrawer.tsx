@@ -18,9 +18,9 @@ interface Props {
   window?: () => Window;
   checked: number[];
   menus: {
-    title: string;
+    name: string;
     cost: number;
-    image: string;
+    photo_url: string;
   }[];
   bill: number;
   handleTotalBill: () => void;
@@ -172,7 +172,7 @@ export default function OrderDrawer(props: Props) {
               {checked.map((value, index) => (
                 <Box>
                   <Item>
-                    {menus[value].title}
+                    {menus[value].name}
                     <br />
                     {menus[value].cost * count[value]}원
                     <Button onClick={() => decrementCount(value)}>-</Button>
@@ -207,6 +207,7 @@ export default function OrderDrawer(props: Props) {
                   color="error"
                   variant="contained"
                   onClick={handleClickOpen}
+                  // href={`/order/details/`}
                   sx={{
                     p: 1,
                     borderRadius: '1rem',
@@ -225,7 +226,7 @@ export default function OrderDrawer(props: Props) {
         </StyledBox>
       </SwipeableDrawer>
       <Dialog open={openDialog} onClose={handleClose}>
-        <OrderChoice takeOut={takeOut} cost={totalBill} />
+        <OrderChoice takeOut={takeOut} cost={3000} />
       </Dialog>
     </Root>
   );
