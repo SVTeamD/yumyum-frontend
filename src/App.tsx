@@ -26,7 +26,6 @@ export default function App() {
           <Route path="/stores/new" element={<MakeStore />} />
           <Route path="/order/details/:id" element={<OrderDetails />} />
           <Route path="/oauth/kakao/callback" element={<Auth />} />
-          {/* <Route path="/Ju" element={<Ju />} /> */}
           <Route path="/merchants/main" element={<StoreManage />} />
         </Routes>
       </BrowserRouter>
