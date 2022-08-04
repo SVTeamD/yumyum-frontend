@@ -86,18 +86,18 @@ export default function OrderDetails() {
               }}
               onClick={() => {
                 fetchOrder();
-                setShow((prev: any) => !prev);
+                setOrderHistory((prev: any) => !prev);
               }}
             >
               주문을 확인해보슈
             </Button>
-            {show && (
-              <>
-                <br />
-                주문번호 {order?.id}번 <br />
-                합계 {order?.cost}원 <br />
-                {order?.is_takeout ? '나가드슈' : '먹고가슈'} <br />
-              </>
+            {orderHistory && (
+              <OrderHistory
+                orderId={order?.id}
+                total={order?.cost}
+                orderType={order?.is_takeout}
+                onClose={() => setOrderHistory(false)}
+              />
             )}
           </Typography>
         </Paper>
@@ -108,21 +108,9 @@ export default function OrderDetails() {
             buttonName="메인화면"
             height="h-14"
             xPadding="px-32"
-            link="/customer"
+            link="/"
           />
         </div>
-        <div className="pt-5">
-          <ButtonM
-            buttonName="상세보기"
-            height="h-14"
-            onClick={() => setOrderHistory(true)}
-            xPadding="px-32"
-          />
-        </div>
-
-        {orderHistory && (
-          <OrderHistory onClose={() => setOrderHistory(false)} />
-        )}
       </div>
     </Grid>
   );

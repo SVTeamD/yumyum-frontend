@@ -14,10 +14,6 @@ export default function OrderMain() {
     category: '',
     id: 0
   });
-  const stores = {
-    name: '오션네 바다횟집',
-    images: '../assets/images/fishhouse'
-  };
 
   React.useEffect(() => {
     async function fetchData() {
